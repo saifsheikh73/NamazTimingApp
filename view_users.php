@@ -106,6 +106,7 @@
             <th class="text-center">Maghrib</th>
             <th class="text-center">Isha</th>
             <th class="text-center">Juma</th>
+            <th class="text-center">Last updated on</th>
         </tr>
         </thead>
 
@@ -129,6 +130,7 @@
             $maghrib_time=$row['maghrib'];
             $isha_time=$row['isha'];
             $juma_time=$row['juma'];
+            $timestamp=$row['timestamp'];
             
 
 
@@ -147,6 +149,7 @@
             <td><?php echo $maghrib_time;  ?></td>
             <td><?php echo $isha_time;  ?></td>
             <td><?php echo $juma_time;  ?></td>
+            <td><?php echo $timestamp;  ?></td>
             
             <!--btn btn-danger is a bootstrap button to show danger-->
         </tr>
