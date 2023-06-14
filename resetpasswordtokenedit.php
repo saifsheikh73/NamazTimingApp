@@ -56,11 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com'; // Specify your SMTP server
             $mail->SMTPAuth = true;
-            $mail->Username = 'saifurrahmansheikh7@gmail.com'; // Your SMTP username
-            $mail->Password = 'Malignant@1997'; // Your SMTP password
+            $mail->Username = 'mad.hammer09@gmail.com'; // Your SMTP username
+            $mail->Password = 'Fakeid@123'; // Your SMTP password
             $mail->SMTPSecure = 'tls'; // Encryption type (tls or ssl)
             $mail->Port = 587; // SMTP port (typically 587 for TLS encryption)
-            $mail->setFrom('saifurrahmansheikh7@gmail.com', 'NamazTimingApp'); // Set the sender's email and name
+            $mail->setFrom('mad.hammer09@gmail.com', 'TimingApp'); // Set the sender's email and name
             $mail->addAddress($email); // Add the recipient's email
 
             $mail->Subject = 'Password Reset';
