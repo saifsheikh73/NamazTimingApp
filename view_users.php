@@ -85,6 +85,9 @@
         <div class="form-group">
          <span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;<input type="text" class="form-control" placeholder="Search by Masjid name/address" id="searchTerm" onKeyUp="doSearch()" />
         </div>
+        <div class="form-group">
+         <span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;<input type="text" class="form-control" placeholder="Search by Masjid name/address" id="searchTerm4" onKeyUp="doSearch()" />
+        </div>
         
       </form>
       </div>
@@ -111,10 +114,9 @@
         </thead>
 
         <?php
-        include("conn.php");
+        include("conn2.php");
         $view_users_query="select * from user1";//select query for viewing users.
         $run=mysqli_query($conn,$view_users_query);//here run the sql query.
-
         while($row=mysqli_fetch_array($run))//while look to fetch the result and store in a array $row.
         {
             $masjid_name=$row['masjidname'];
@@ -131,11 +133,7 @@
             $isha_time=$row['isha'];
             $juma_time=$row['juma'];
             $timestamp=$row['timestamp'];
-            
-
-
-
-        ?>
+            ?>
 
         <tr>
 <!--here showing results in the table -->
@@ -164,6 +162,8 @@
     		var searchText = document.getElementById('searchTerm').value;
     		var targetTable = document.getElementById('example2');
     		var targetTableColCount;
+        var searchText = document.getElementById('searchTerm4').value;
+    		
 
     		//Loop through table rows
     		for (var rowIndex = 0; rowIndex < targetTable.rows.length; rowIndex++) {
@@ -247,3 +247,4 @@
 </body>
 
 </html>
+  

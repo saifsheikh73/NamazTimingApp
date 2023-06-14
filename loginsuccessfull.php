@@ -45,6 +45,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     //echo"<script>window.location.href='timingupdated.php';</script>";
     
 }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +84,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 </head>
 
-<body>
+<body onmousedown="return false" onselectstart="return false">
 
     <div class="limiter">
         <div class="container-login100">
@@ -128,6 +131,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                         <input type="submit" class="login100-form-btn" value="Update">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                     &nbsp;
+                    <div class="container-login100-form-btn">
+                        <input type="submit" class="login100-form-btn" name="logout" value="Logout">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    &nbsp;
 
                 </form>
             </div>
@@ -150,26 +157,22 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     <script src="vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clockpicker/0.0.7/jquery.clockpicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clockpicker/0.0.7/bootstrap-clockpicker.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 
-<script>
+     <!--Flatpickr for time/clock-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
     document.addEventListener('DOMContentLoaded', function() {
-        flatpickr('.input100', {
-            enableTime: true,
-            noCalendar: true,
-            dateFormat: "H:i",
-            time_24hr: false
+    flatpickr('.input100', {
+      enableTime: true,
+      noCalendar: true,
+      disableMobile: true,
+      dateFormat: "h:i K",
+      time_24hr: false,
         });
     });
-</script>
+    </script>
 
 
 

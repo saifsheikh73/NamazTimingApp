@@ -45,6 +45,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     //echo"<script>window.location.href='timingupdated.php';</script>";
     
 }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -76,12 +79,15 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!--===============================================================================================-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="clockpicker/src/clockpicker.css">
-<script src="clockpicker/src/clockpicker.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.js"></script>
+
+
+
 </head>
 
-<body>
+<body onmousedown="return false" onselectstart="return false">
 
     <div class="limiter">
         <div class="container-login100">
@@ -91,13 +97,15 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                         <?php echo $_SESSION['username']; ?>
                     </span>
                 </div>
-
+                
                 <form class="login100-form validate-form" method='POST'>
+                    
                     <div class="wrap-input100 validate-input m-b-26" data-validate="Time is required">
-    <span class="label-input100">Fajr</span>
-    <input class="input100 clockpicker" type="time" name="fajr" placeholder="Fajr" value="<?php echo $fajrtime; ?>">
-    <span class="focus-input100"></span>
-</div>
+                         <span class="label-input100">Fajr</span>
+                            <input class="input100" type="text" name="fajr" placeholder="Fajr" value="<?php echo $fajrtime; ?>">
+                        <span class="focus-input100"></span>
+                    </div>
+
                     <div class="wrap-input100 validate-input m-b-26" data-validate="Time is required">
                         <span class="label-input100">Zohar</span>
                         <input class="input100" type="text" name="zohar" placeholder="Zohar" value="<?php echo $zohartime; ?>">
@@ -128,6 +136,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                         <input type="submit" class="login100-form-btn" value="Update">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                     &nbsp;
+                    <div class="container-login100-form-btn">
+                        <input type="submit" class="login100-form-btn" name="logout" value="Logout">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    &nbsp;
 
                 </form>
             </div>
@@ -144,23 +156,32 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     <!--===============================================================================================-->
     <script src="vendor/select2/select2.min.js"></script>
     <!--===============================================================================================-->
-    <script src="vendor/daterangepicker/moment.min.js"></script>
-    <script src="vendor/daterangepicker/daterangepicker.js"></script>
     <!--===============================================================================================-->
     <script src="vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
-    <!-- Add this script at the end of your HTML body or in a separate JavaScript file -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
 <script>
-    $(document).ready(function(){
-        $('.clockpicker').clockpicker({
-            autoclose: true,
-            placement: 'top',
-            align: 'left',
-            donetext: 'Done'
-        });
+  document.addEventListener('DOMContentLoaded', function() {
+    flatpickr('.input100', {
+      enableTime: true,
+      noCalendar: true,
+      disableMobile: false,
+      dateFormat: "h:i K",
+      time_24hr: false,
     });
+  });
 </script>
+
+
+
+
+
+
 
 </body>
 
