@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mail->Host = 'smtp.gmail.com'; // Specify your SMTP server
             $mail->SMTPAuth = true;
             $mail->Username = 'mad.hammer09@gmail.com'; // Your SMTP username
-            $mail->Password = 'Fakeid@123'; // Your SMTP password
+            $mail->Password = 'Fakeid@123'; // Your SMTP password  
             $mail->SMTPSecure = 'tls'; // Encryption type (tls or ssl)
             $mail->Port = 587; // SMTP port (typically 587 for TLS encryption)
             $mail->setFrom('mad.hammer09@gmail.com', 'TimingApp'); // Set the sender's email and name
