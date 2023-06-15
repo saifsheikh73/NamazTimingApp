@@ -1,4 +1,5 @@
 <?php
+include'conn.php';
 
 //use PHPMailer\PHPMailer\PHPMailer;
 //use PHPMailer\PHPMailer\Exception;
@@ -15,10 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Check if the email exists in the database
         // Perform your database query to check if the email exists
         // Replace the placeholders with your actual database connection code
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $database = "id20710658_db";
+        //$servername = "localhost";
+        //$username = "root";
+        //$password = "";
+        //$database = "id20710658_db";
 
         $conn = new mysqli($servername, $username, $password, $database);
         if ($conn->connect_error) {
