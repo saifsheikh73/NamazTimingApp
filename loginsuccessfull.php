@@ -132,6 +132,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     </div>
                     &nbsp;
                     <div class="container-login100-form-btn">
+                        <a type="button" class="login100-form-btn" href="EditMasjidDetails.php" value="Edit Masjid Details">Edit Masjid Details</a>
+                    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="container-login100-form-btn">
                         <input type="submit" class="login100-form-btn" name="logout" value="Logout">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                     &nbsp;
