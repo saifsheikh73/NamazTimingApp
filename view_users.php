@@ -114,7 +114,7 @@
         </thead>
 
         <?php
-        include("conn2.php");
+        include("conn.php");
         $view_users_query="select * from user1";//select query for viewing users.
         $run=mysqli_query($conn,$view_users_query);//here run the sql query.
         while($row=mysqli_fetch_array($run))//while look to fetch the result and store in a array $row.
