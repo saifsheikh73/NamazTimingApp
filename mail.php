@@ -44,3 +44,17 @@ $mail->send();
 } catch (Exception $e) {
  echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
+
+// Function to generate a random reset token
+function generateResetToken()
+{
+    $length = 32; // Length of the token
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $token = '';
+    for ($i = 0; $i < $length; $i++) {
+        $token .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return $token;
+}
+
+?>
