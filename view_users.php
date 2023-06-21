@@ -67,7 +67,7 @@
 </style>
 
 <a href="https://www.google.com/maps/search/masjid+near+me" class="button">Masjid near me</a>
-<a href="https://checktimeinlocality.000webhostapp.com/login.php" class="button2">Masjid login</a>
+<a href="login.php" class="button2">Masjid login</a>
 
 <br>
 <br>
