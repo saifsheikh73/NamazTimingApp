@@ -111,13 +111,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 					</div>
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Mobile no. is required">
 						<span class="label-input100">Primary Mobile no.</span>
-						<input class="input100" type="text" name="mobileno" placeholder="Enter primary mobile no." value="<?php echo $mobileno2; ?>" required>
+						<input class="input100" type="number" name="mobileno" placeholder="Enter primary mobile no." value="<?php echo $mobileno; ?>" required>
 						<span class="focus-input100"></span>
 					</div>
 					
 					<div class="wrap-input100 validate-input m-b-26">
 						<span class="label-input100">Secondary Email</span>
-						<input class="input100" type="text" name="email2" placeholder="Enter secondary email" value="<?php echo $email2; ?>">
+						<input class="input100" type="number" name="email2" placeholder="Enter secondary email" value="<?php echo $email2; ?>">
 						<span class="focus-input100"></span>
 					</div>
 					
@@ -161,7 +161,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 					</div>
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Zipcode is required">
 						<span class="label-input100">Zipcode</span>
-						<input class="input100" type="text" name="zipcode" placeholder="Zipcode" value="<?php echo $zipcode; ?>" required>
+						<input class="input100" type="number" name="zipcode" placeholder="Zipcode" value="<?php echo $zipcode; ?>" required>
 						<span class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-26" data-validate="State is required">

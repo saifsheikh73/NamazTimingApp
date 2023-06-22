@@ -30,16 +30,7 @@ include("conn.php");
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 </head>
-<style>
-    .login-panel {
-        margin-top: 150px;
-    }
-    .table {
-        margin-top: 50px;
 
-    }
-
-</style>
 
 <!--<div style="float: right; clear: both;" class="container-login100-form-btn">
 //<a href="https://www.google.com/maps/search/masjid+near+me" class="login100-form-btn">masjid near me</a>
@@ -136,6 +127,7 @@ include("conn.php");
             $isha_time=$row['isha'];
             $juma_time=$row['juma'];
             $timestamp=$row['timestamp'];
+            $date = date('d/m/Y', strtotime($timestamp));
             ?>
 
         <tr>
@@ -150,7 +142,7 @@ include("conn.php");
             <td><?php echo $maghrib_time;  ?></td>
             <td><?php echo $isha_time;  ?></td>
             <td><?php echo $juma_time;  ?></td>
-            <td><?php echo $timestamp;  ?></td>
+            <td><?php echo $date;  ?></td>
             
             <!--btn btn-danger is a bootstrap button to show danger-->
         </tr>
