@@ -8,6 +8,9 @@ $row = mysqli_fetch_assoc($result);
 
 $userName=$row['username'];
 $email=$row['email'];
+$mobileno=$row['mobileno'];
+$email2=$row['email2'];
+$mobileno2=$row['mobileno2'];
 $password=$row['password'];
 $masjidname = $row['masjidname'];
 $address = $row['address'];
@@ -22,7 +25,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     
 	$userName=$_POST['username'];
 	$email=$_POST['email'];
-	$password=$_POST['pass'];
+	$password=$_POST['password'];
+	$mobileno=$_POST['mobileno'];
+	$email2=$_POST['email2'];
+	$mobileno2=$_POST['mobileno2'];
 	$masjidname = $_POST['masjidname'];
 	$address = $_POST['address'];
 	$city = $_POST['city'];
@@ -32,7 +38,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	$forladies = $row['forladies'];
     
 
-	$sql="UPDATE user1 SET username ='". $userName."', email ='". $email."', pass ='". $password."', masjidname ='". $masjidname."', address ='". $address."', city ='". $city."', zipcode ='". $zipcode."', state ='". $state."', addresslink ='". $addresslink."' WHERE id ='".$_SESSION['id']."'";
+	$sql="UPDATE user1 SET username ='". $userName."', email ='". $email."', password ='". $password."', mobileno ='". $mobileno."', email2 ='". $email2."', mobileno2 ='". $mobileno2."', masjidname ='". $masjidname."', address ='". $address."', city ='". $city."', zipcode ='". $zipcode."', state ='". $state."', addresslink ='". $addresslink."' WHERE id ='".$_SESSION['id']."'";
     
     
     $result=mysqli_query($conn,$sql) or die (mysqli_error($conn));
@@ -97,9 +103,27 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 					</span>
 				</div>
                                 <form class="login100-form validate-form" method="POST">
+					
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
-						<span class="label-input100">Email id</span>
-						<input class="input100" type="text" name="email" placeholder="Enter email." value="<?php echo $email; ?>" required>
+						<span class="label-input100">Primary Email</span>
+						<input class="input100" type="text" name="email" placeholder="Enter primary email" value="<?php echo $email; ?>" required>
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Mobile no. is required">
+						<span class="label-input100">Primary Mobile no.</span>
+						<input class="input100" type="text" name="mobileno" placeholder="Enter primary mobile no." value="<?php echo $mobileno2; ?>" required>
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input m-b-26">
+						<span class="label-input100">Secondary Email</span>
+						<input class="input100" type="text" name="email2" placeholder="Enter secondary email" value="<?php echo $email2; ?>">
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input m-b-26">
+						<span class="label-input100">Secondary Mobile no.</span>
+						<input class="input100" type="text" name="mobileno2" placeholder="Enter secondary mobile no." value="<?php echo $mobileno2; ?>">
 						<span class="focus-input100"></span>
 					</div>
 					
@@ -115,7 +139,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
 						<span class="label-input100">Password</span>
-						<input class="input100" type="text" name="pass" placeholder="Enter password" value="<?php echo $password; ?>" required>
+						<input class="input100" type="text" name="password" placeholder="Enter password" value="<?php echo $password; ?>" required>
 						<span class="focus-input100"></span>
 					</div>
 					

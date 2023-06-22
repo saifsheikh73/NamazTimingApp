@@ -1,3 +1,7 @@
+
+<?php
+include("conn.php");
+?>
 <html>
 <head>
 	<title>View Locations</title>
@@ -86,7 +90,7 @@
          <span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;<input type="text" class="form-control" placeholder="Search by Masjid name/address" id="searchTerm" onKeyUp="doSearch()" />
         </div>
         <div class="form-group">
-         <span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;<input type="text" class="form-control" placeholder="Search by Masjid name/address" id="searchTerm4" onKeyUp="doSearch()" />
+         <span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;<input type="text" class="form-control" placeholder="Search by Masjid name/address" id="searchTerm2" onKeyUp="doSearchtwo()" />
         </div>
         
       </form>
@@ -94,7 +98,7 @@
 <!--this is used for responsive display in mobile and other devices-->
 <div class="table-responsive alert alert-info">
 
-    <table class="table table-hover text-center" id="example2">
+    <table class="table table-hover text-center" id="getsearch">
         <thead>
 
         <tr>
@@ -114,7 +118,6 @@
         </thead>
 
         <?php
-        include("conn.php");
         $view_users_query="select * from user1";//select query for viewing users.
         $run=mysqli_query($conn,$view_users_query);//here run the sql query.
         while($row=mysqli_fetch_array($run))//while look to fetch the result and store in a array $row.
@@ -157,73 +160,7 @@
     </table>
     </div>
         </div>
-<script type="text/javascript">
-        function doSearch() {
-    		var searchText = document.getElementById('searchTerm').value;
-    		var targetTable = document.getElementById('example2');
-    		var targetTableColCount;
-        var searchText = document.getElementById('searchTerm4').value;
-    		
-
-    		//Loop through table rows
-    		for (var rowIndex = 0; rowIndex < targetTable.rows.length; rowIndex++) {
-    			var rowData = '';
-
-    			//Get column count from header row
-    			if (rowIndex == 0) {
-    				targetTableColCount = targetTable.rows.item(rowIndex).cells.length;
-    				continue; //do not execute further code for header row.
-    			}
-
-    			//Process data rows. (rowIndex >= 1)
-    			for (var colIndex = 0; colIndex < targetTableColCount; colIndex++) {
-    				var cellText = '';
-
-    				if (navigator.appName == '')
-    					cellText = targetTable.rows.item(rowIndex).cells.item(colIndex).innerText;
-    				else
-    					cellText = targetTable.rows.item(rowIndex).cells.item(colIndex).textContent;
-
-    				rowData += cellText;
-    			}
-
-    			// Make search case insensitive.
-    			rowData = rowData.toLowerCase();
-    			searchText = searchText.toLowerCase();
-
-    			//If search term is not found in row data
-    			//then hide the row, else show
-    			if (rowData.indexOf(searchText) == -1)
-    				targetTable.rows.item(rowIndex).style.display = 'none';
-    			else
-    				targetTable.rows.item(rowIndex).style.display = 'table-row';
-    		}
-    	}
-    </script>
-  <!--End-->
-  <!--filter js-->
-  	   <script type="text/javascript">
-        $(document).ready(function(){
-          $("#filterButton").click(function(){
-            $("#filterpanel").toggle();
-          });
-        });
-      </script> 
-  <!--End-->
-  <!-- page script -->
-<script>
-  $(function () {
-    //$("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
-</script>
+  <script type="text/javascript" src=search.js>
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->

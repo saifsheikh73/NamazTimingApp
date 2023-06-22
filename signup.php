@@ -4,9 +4,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $userName=$_POST['username'];
     $email=$_POST['email'];
    $password=$_POST['pass'];
-    $sql="INSERT INTO user1 (userName,email,password,masjidname,address,city,zipcode,state,addresslink,forladies) VALUES
+    $sql="INSERT INTO user1 (userName,email,email2,mobileno,mobileno2,password,masjidname,address,city,zipcode,state,addresslink,forladies) VALUES
     ('".$_POST['username']."',
     '".$_POST['email']."',
+    '".$_POST['email2']."',
+    '".$_POST['mobileno']."',
+    '".$_POST['mobileno2']."',
     '".$_POST['pass']."',
     '".$_POST['masjidname']."',
     '".$_POST['address']."',
@@ -61,8 +64,25 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				</div>
                                 <form class="login100-form validate-form" method="POST">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
-						<span class="label-input100">Email</span>
-						<input class="input100" type="text" name="email" placeholder="Enter email/mobile no." required>
+						<span class="label-input100">Primary Email</span>
+						<input class="input100" type="text" name="email" placeholder="Enter primary email" required>
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Mobile no. is required">
+						<span class="label-input100">Primary Mobile no.</span>
+						<input class="input100" type="text" name="mobileno" placeholder="Enter primary mobile no." required>
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-26">
+						<span class="label-input100">Secondary Email (Optional)</span>
+						<input class="input100" type="text" name="email2" placeholder="Enter secondary email" >
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input m-b-26">
+						<span class="label-input100">Secondary Mobile no. (Optional)</span>
+						<input class="input100" type="text" name="mobileno2" placeholder="Enter secondary mobile no.">
 						<span class="focus-input100"></span>
 					</div>
 					
@@ -117,7 +137,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 					
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Field is required">
 						<span class="label-input100">Space for Masturaat</span>
-						<input class="input100" type="text" name="forladies" placeholder="Yes/No" value="<?php echo $forladies; ?>" required>
+						<input class="input100" type="text" name="forladies" placeholder="Yes/No" required>
 						<!--<input  type="radio" name="forladies" value=Yes placeholder="Yes" required> Yes
 						<input  type="radio" name="forladies" value=No placeholder="No" required> No-->
 					</div>	
