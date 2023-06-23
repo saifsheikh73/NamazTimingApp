@@ -14,5 +14,5 @@ $mailHost = 'mail.questiondrive.com'; // Specify main and backup SMTP servers
 $mailUsername = 'questio2'; // SMTP username
 $mailPassword = 'NamazTiming'; // SMTP password
 $mailSMTPSecure = 'tls'; // Enable TLS encryption, [ICODE]ssl[/ICODE] also accepted
-$mailPort = 465; // TCP port to connect to
+$mailPort = 587; // TCP port to connect to
 ?>
