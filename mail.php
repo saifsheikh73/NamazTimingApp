@@ -8,7 +8,7 @@ require '/home/questio2/PHPMailerTest/PHPMailer/src/SMTP.php';
 
 // Instantiation and passing [ICODE]true[/ICODE] enables exceptions
 $mail = new PHPMailer(true);
-
+$resetLink = "resetpassword.php?token=" . $resetToken;
 try {
  //Server settings
  $mail->SMTPDebug = 2; // Enable verbose debug output
@@ -36,7 +36,7 @@ try {
  $mail->isHTML(true); // Set email format to HTML
  $mail->Subject = 'Here is the subject';
  $mail->Body = 'This is the HTML message body <b>in bold!</b>';
- $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+ $mail->AltBody = 'This is the body in plain text for non-HTML mail clients' . $resetLink;
 
 $mail->send();
  echo 'Message has been sent';
