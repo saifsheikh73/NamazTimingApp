@@ -13,6 +13,6 @@ die("Connection failed: " . $conn->connect_error); }
 $mailHost = 'mail.questiondrive.com'; // Specify main and backup SMTP servers
 $mailUsername = 'questio2'; // SMTP username
 $mailPassword = 'NamazTiming'; // SMTP password
-$mailSMTPSecure = 'ssl'; // Enable TLS encryption, [ICODE]ssl[/ICODE] also accepted
+$mailSMTPSecure = 'tls'; // Enable TLS encryption, [ICODE]ssl[/ICODE] also accepted
 $mailPort = 465; // TCP port to connect to
 ?>
