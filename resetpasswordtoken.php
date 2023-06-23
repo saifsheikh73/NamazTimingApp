@@ -12,9 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Perform your database query to check if the email exists
         // Replace the placeholders with your actual database connection code
         $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $database = "id20710658_db";
+        $username = "questio2_id20710658_db";
+        $password = "questio2_id20710658_db";
+        $database = "questio2_namaz_db";
 
         $conn = new mysqli($servername, $username, $password, $database);
         if ($conn->connect_error) {
