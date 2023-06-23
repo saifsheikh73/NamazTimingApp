@@ -24,7 +24,7 @@ try {
 
 //Recipients
  $mail->setFrom('furqan@namaz.questiondrive.com', 'Mailer');
- $mail->addAddress('saifurrahmansheikh7@gmail.com', 'RestPass'); // Add a recipient
+ $mail->addAddress('saifurrahmansheikh7@gmail.com', 'ResetPass'); // Add a recipient
  //$mail->addAddress('sadcompiler@gmail.com'); // Name is optional
  //$mail->addReplyTo('furqan@namaz.questiondrive.com', 'Information');
 //  $mail->addCC('cc@example.com');
