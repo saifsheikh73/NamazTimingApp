@@ -1,6 +1,5 @@
 <?php
 
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -117,8 +116,9 @@ function generateResetToken()
     <title>Password Reset</title>
 </head>
 <body>
+    
     <h2>Reset Your Password</h2>
-    <form method="POST" action="">
+    <form method="POST" action="resetconfirmation.php">
         <div>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
