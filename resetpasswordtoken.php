@@ -117,8 +117,8 @@ function generateResetToken()
 </head>
 <body>
     
-    <h2>Reset Your Password</h2>
-    <form method="POST" action="resetconfirmation.php">
+    <h2>Reset Your Password check</h2>
+    <form method="POST" action="resetpasswordtoken.php">
         <div>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
