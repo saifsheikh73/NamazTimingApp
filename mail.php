@@ -9,7 +9,7 @@ require '/home/questio2/PHPMailerTest/PHPMailer/src/SMTP.php';
 
 // Instantiation and passing [ICODE]true[/ICODE] enables exceptions
 $mail = new PHPMailer(true);
-generateResetToken();
+$resetToken = generateResetToken();
 $resetLink = "namaz.questiondrive.com/resetpassword.php?token=" . $resetToken;
 try {
  //Server settings
@@ -26,7 +26,7 @@ try {
  $mail->setFrom('furqan@namaz.questiondrive.com', 'Mailer');
  $mail->addAddress('furqanmax27@gmail.com', 'furqan'); // Add a recipient
  //$mail->addAddress('sadcompiler@gmail.com'); // Name is optional
- $mail->addReplyTo('furqan@namaz.questiondrive.com', 'Information');
+ //$mail->addReplyTo('furqan@namaz.questiondrive.com', 'Information');
 //  $mail->addCC('cc@example.com');
 //  $mail->addBCC('bcc@example.com');
 
