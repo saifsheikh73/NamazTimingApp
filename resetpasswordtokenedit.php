@@ -1,6 +1,6 @@
 <?php
-include 'conn.php';
-include 'mail.php';
+include'conn.php';
+include'mail.php';
  
 ?>
 
