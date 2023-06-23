@@ -24,7 +24,7 @@ try {
 //Recipients
  $mail->setFrom('furqan@namaz.questiondrive.com', 'Mailer');
  $mail->addAddress('furqanmax27@gmail.com', 'furqan'); // Add a recipient
- $mail->addAddress('sadcompiler@gmail.com'); // Name is optional
+ //$mail->addAddress('sadcompiler@gmail.com'); // Name is optional
  $mail->addReplyTo('furqan@namaz.questiondrive.com', 'Information');
 //  $mail->addCC('cc@example.com');
 //  $mail->addBCC('bcc@example.com');
@@ -36,8 +36,8 @@ try {
 // Content
  $mail->isHTML(true); // Set email format to HTML
  $mail->Subject = 'Here is the subject';
- $mail->Body = 'This is the HTML message body <b>in bold!</b>';
- $mail->AltBody = 'This is the body in plain text for non-HTML mail clients' . $resetLink;
+ $mail->Body = 'This is the HTML message body <b>in bold!</b>' . $resetLink;
+ $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 $mail->send();
  echo 'Message has been sent';
