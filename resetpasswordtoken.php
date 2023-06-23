@@ -1,5 +1,11 @@
 <?php
 include'conn.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+
+
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Process the form data
@@ -43,15 +49,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Send a password reset email to the user
             $resetLink = "resetpassword.php?token=" . $resetToken; // Replace with your actual reset password page URL
-            $emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
-            $emailSubject = "Password Reset";
-            // Send the email using your preferred email sending method (e.g., PHPMailer, mail() function)
-            // Replace the placeholders with your actual email sending code
+
+            // Configure PHPMailer
+            require '/home/questio2/PHPMailerTest/PHPMailer/src/Exception.php';
+            require '/home/questio2/PHPMailerTest/PHPMailer/src/PHPMailer.php';
+            require '/home/questio2/PHPMailerTest/PHPMailer/src/SMTP.php';
+
+            $mail = new PHPMailer(true);
+            try{
+            $mail->SMTPDebug = 2; // Enable verbose debug output
+ $mail->isSMTP(); // Set mailer to use SMTP
+ $mail->Host = $mailHost; // Specify main and backup SMTP servers
+ $mail->SMTPAuth = true; // Enable SMTP authentication
+ $mail->Username = $mailUsername; // SMTP username
+ $mail->Password = $mailPassword; // SMTP password
+ $mail->SMTPSecure = $mailSMTPSecure; // Enable TLS encryption, [ICODE]ssl[/ICODE] also accepted
+ $mail->Port = $mailPort; // TCP port to connect to
+
+//Recipients
+ $mail->setFrom('furqan@namaz.questiondrive.com', 'Mailer');
+ $mail->addAddress($email);
+ $mail->isHTML(true); // Set email format to HTML
+            $mail->Subject = 'Password Reset';
+            $mail->Body = 'Click the following link to reset your password: ' . $resetLink;
+
+            if (!$mail->send()) {
+                echo "Failed to send password reset email.";
+                echo $email;
+            } else {
+                echo "Password reset email sent successfully.";
+            }
+        }catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+           }
 
             // Redirect the user to a confirmation page
-            header("Location: resetconfirmation.php");  
-            exit();
+            //header("Location: resetconfirmation.php");
+            //exit;
         }
+        
 
         $stmt->close();
         $conn->close();
@@ -59,7 +95,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Function to generate a random reset token
-function generateResetToken() {
+function generateResetToken()
+{
     $length = 32; // Length of the token
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $token = '';
@@ -69,7 +106,6 @@ function generateResetToken() {
     return $token;
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
