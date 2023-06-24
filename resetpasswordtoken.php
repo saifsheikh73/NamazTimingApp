@@ -13,13 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Check if the email exists in the database
         // Perform your database query to check if the email exists
         // Replace the placeholders with your actual database connection code
-        include'mail2.php';
+        
         $query = "SELECT * FROM user1 WHERE email = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
-
+        include'mail2.php';
         if ($result->num_rows == 0) {
             echo "Email does not exist.";
         } else {
