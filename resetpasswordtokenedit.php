@@ -8,8 +8,7 @@
     if (empty($email)) {
         echo "Email is required.";
     } else {
-        $error = "Invalid email address.";
-        echo $error;
+        
         // Check if the email exists in the database
         // Perform your database query to check if the email exists
         // Replace the placeholders with your actual database connection code
@@ -36,7 +35,8 @@ $mailPort = 587; // TCP port to connect to
         //if ($conn->connect_error) {
         //    die("Connection failed: " . $conn->connect_error);
         //}
-
+        $error = "Invalid email address.";
+        echo $error;
         $query = "SELECT * FROM user1 WHERE email = ?";
         $stmt = $conn1->prepare($query);
         $stmt->bind_param("s", $email);
