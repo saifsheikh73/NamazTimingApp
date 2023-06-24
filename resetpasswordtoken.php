@@ -40,9 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         
         
-        if ($result->num_rows == 0) {
-            echo "Email does not exist.";
-        } else {
+        
             // Generate and store a password reset token
             $resetToken = generateResetToken(); // Replace this with your actual token generation code
             $expiryTime = date('Y-m-d H:i:s', strtotime('+1 hour')); // Set the expiry time for the token
@@ -62,8 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Redirect the user to a confirmation page
             header("Location: resetconfirmation.php");  
-            exit();
-        }
+            
+        
 
         $stmt->close();
         $conn->close();
