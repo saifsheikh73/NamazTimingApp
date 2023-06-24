@@ -31,8 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         $query = "SELECT * FROM user1 WHERE email = ?";
         $stmt = $conn->prepare($query);
-        include'mail2.php';
+        
         $stmt->bind_param("s", $email);
+        include'mail2.php';
         $stmt->execute();
         $result = $stmt->get_result();
         
