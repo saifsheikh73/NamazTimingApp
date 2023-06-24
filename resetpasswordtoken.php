@@ -33,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $stmt = $conn->prepare($query);
 $stmt->bind_param("s", $email);
 $stmt->execute();
-$result = $stmt->get_result();
+$stmt->store_result();
 
-if ($result->num_rows == 0) {
+if ($stmt->num_rows == 0) {
             echo "Email does not exist.";
         } else {
             // Generate and store a password reset token
