@@ -81,7 +81,7 @@ function generateResetToken() {
 </head>
 <body>
     <h2>Reset Your Password</h2>
-    <form method="POST" action="">
+    <form method="POST" action="login.php">
         <div>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
