@@ -33,8 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = $conn->prepare($query);
         
         $stmt->bind_param("s", $email);
-        include'mail2.php';
+        
         $stmt->execute();
+        include'mail2.php';
         $result = $stmt->get_result();
         
         if ($result->num_rows == 0) {
