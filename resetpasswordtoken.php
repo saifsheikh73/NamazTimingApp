@@ -31,12 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         $query = "SELECT * FROM user1 WHERE email = ?";
         $stmt = $conn->prepare($query);
-        
         $stmt->bind_param("s", $email);
-        
         $stmt->execute();
-        
-        $result = $stmt->get_result();
+        $stmt->execute();
+$stmt->bind_result($id, $username, $email); // Replace with actual column names
+$stmt->fetch();
+$result = [$id, $username, $email]; // Store the results in an array or use them as needed
+$stmt->close();
+
         include'mail2.php';
         
         if ($result->num_rows == 0) {
