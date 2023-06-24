@@ -35,8 +35,7 @@ $mailPort = 587; // TCP port to connect to
         //if ($conn->connect_error) {
         //    die("Connection failed: " . $conn->connect_error);
         //}
-        $error = "Invalid email address.";
-        echo $error;
+        
         $query = "SELECT * FROM user1 WHERE email = ?";
         $stmt = $conn1->prepare($query);
         $stmt->bind_param("s", $email);
@@ -46,6 +45,8 @@ $mailPort = 587; // TCP port to connect to
         if ($result->num_rows == 0) {
             echo "Email does not exist.";
         } else {
+            $error = "Invalid email address.";
+        echo $error;
             // Generate and store a password reset token
             $resetToken = generateResetToken(); // Replace this with your actual token generation code
             $expiryTime = date('Y-m-d H:i:s', strtotime('+1 hour')); // Set the expiry time for the token
