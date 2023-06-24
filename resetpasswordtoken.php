@@ -33,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = $conn->prepare($query);
         $stmt->bind_param("s", $email);
         $stmt->execute();$stmt->execute();
-        $stmt->bind_result($email); // Replace with actual column names
+        $stmt->bind_result($id, $username, $email); // Replace with actual column names
         $stmt->fetch();
-        $result = [$email]; // Store the results in an array or use them as needed
+        $result = [$id, $username, $email]; // Store the results in an array or use them as needed
         //$stmt->close();
         
         
