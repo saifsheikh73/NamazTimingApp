@@ -28,13 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mailPassword = 'NamazTiming'; // SMTP password
         $mailSMTPSecure = 'tls'; // Enable TLS encryption, [ICODE]ssl[/ICODE] also accepted
         $mailPort = 587; // TCP port to connect to
-        echo 'line1';
-        $query = "SELECT * FROM user1 WHERE email = '".$_POST['email']."'";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        echo 'line2';
+        
+        $query = "SELECT * FROM user1 WHERE email = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("s", $_POST['email']);
+$stmt->execute();
+$result = $stmt->get_result();
+
         if ($result->num_rows == 0) {
             echo "Email does not exist.";
         } else {
