@@ -82,7 +82,7 @@ else
 						</div>
 
 						<div>
-							<a href="resetpasswordtokenedit.php" class="txt1">
+							<a href="resetpasswordtoken.php" class="txt1">
 								Forgot Password?
 							</a>
 						</div>

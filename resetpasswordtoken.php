@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $emailSub = "Password Reset";
             // Send the email using your preferred email sending method (e.g., PHPMailer, mail() function)
             // Replace the placeholders with your actual email sending code
-            include'mail2.php';
+            include'mail.php';
             // Redirect the user to a confirmation page
             header("Location: resetemailsent.php");  
             exit();

@@ -1,5 +1,5 @@
 <?php
-//include'conn.php';
+include'conn.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -23,8 +23,8 @@ try {
  $mail->Port = $mailPort; // TCP port to connect to
 
 //Recipients
- $mail->setFrom('furqan@namaz.questiondrive.com', 'Namaz Timing App');
- $mail->addAddress($email, 'ResetPass'); // Add a recipient
+ $mail->setFrom('furqan@namaz.questiondrive.com', 'Mailer');
+ $mail->addAddress('saifurrahmansheikh7@gmail.com', 'ResetPass'); // Add a recipient
  //$mail->addAddress('sadcompiler@gmail.com'); // Name is optional
  //$mail->addReplyTo('furqan@namaz.questiondrive.com', 'Information');
 //  $mail->addCC('cc@example.com');
@@ -36,8 +36,8 @@ try {
 
 // Content
  $mail->isHTML(true); // Set email format to HTML
- $mail->Subject = 'Reset Password';
- $mail->Body = $emailContent;
+ $mail->Subject = 'Here is the subject';
+ $mail->Body = 'This is the HTML message body <b>in bold!</b> ' . $resetLink;
  $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 $mail->send();
@@ -46,3 +46,17 @@ $mail->send();
 } catch (Exception $e) {
  echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
+
+// Function to generate a random reset token
+function generateResetToken()
+{
+    $length = 32; // Length of the token
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $token = '';
+    for ($i = 0; $i < $length; $i++) {
+        $token .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return $token;
+}
+
+?>
