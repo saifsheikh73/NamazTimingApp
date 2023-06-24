@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
-        
+        include'mail2.php';
         if ($result->num_rows == 0) {
             echo "Email does not exist.";
         } else {
@@ -52,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $resetLink = "resetpassword.php?token=" . $resetToken; // Replace with your actual reset password page URL
             $emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
             $emailSubject = "Password Reset";
-            include'mail2.php';
             // Send the email using your preferred email sending method (e.g., PHPMailer, mail() function)
             // Replace the placeholders with your actual email sending code
 
