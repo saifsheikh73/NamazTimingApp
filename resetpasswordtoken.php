@@ -1,5 +1,5 @@
 <?php
-include'conn.php';
+
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Process the form data
@@ -13,9 +13,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Check if the email exists in the database
         // Perform your database query to check if the email exists
         // Replace the placeholders with your actual database connection code
-       
-        $sql = "SELECT * FROM user1 WHERE email = ?";
-        $stmt = $conn->prepare($sql);
+        $servername = "localhost"; 
+        $username = "questio2_id20710658_db"; 
+        $password = "questio2_id20710658_db"; 
+        $database = "questio2_namaz_db"; 
+        // Create connection 
+        $conn = new mysqli($servername, $username, $password, $database); 
+        // Check connection 
+        if ($conn->connect_error) { 
+        die("Connection failed: " . $conn->connect_error); } 
+        
+        $mailHost = 'mail.questiondrive.com'; // Specify main and backup SMTP servers
+        $mailUsername = 'questio2'; // SMTP username
+        $mailPassword = 'NamazTiming'; // SMTP password
+        $mailSMTPSecure = 'tls'; // Enable TLS encryption, [ICODE]ssl[/ICODE] also accepted
+        $mailPort = 587; // TCP port to connect to
+        
+        $query = "SELECT * FROM user1 WHERE email = ?";
+        $stmt = $conn->prepare($query);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
