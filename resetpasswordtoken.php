@@ -54,7 +54,7 @@ $mailPort = 587; // TCP port to connect to
             include'mail2.php';
 
             // Redirect the user to a confirmation page
-            header("Location: resetconfirmation.php");  
+            //header("Location: resetconfirmation.php");  
             exit();
         }
 
