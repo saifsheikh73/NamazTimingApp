@@ -8,6 +8,8 @@
     if (empty($email)) {
         echo "Email is required.";
     } else {
+        $error = "Invalid email address.";
+        echo $error;
         // Check if the email exists in the database
         // Perform your database query to check if the email exists
         // Replace the placeholders with your actual database connection code
