@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         
         
-        if ($result->num_rows == 0) {
+        if (empty($result)) {
             echo "Email does not exist.";
         } else {
             // Generate and store a password reset token
