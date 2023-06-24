@@ -17,10 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         //$database = "id20710658_db";
         include'conn.php';
 
-        $conn = new mysqli($servername, $username, $password, $database);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+        //$conn = new mysqli($servername, $username, $password, $database);
+        //if ($conn->connect_error) {
+        //    die("Connection failed: " . $conn->connect_error);
+        //}
 
         $query = "SELECT * FROM user1 WHERE email = ?";
         $stmt = $conn->prepare($query);
