@@ -32,14 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $query = "SELECT * FROM user1 WHERE email = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $stmt->execute();
-$stmt->bind_result($email); // Replace with actual column names
-$stmt->fetch();
-$result = [$email]; // Store the results in an array or use them as needed
-
-
+        $stmt->execute();$stmt->execute();
+        $stmt->bind_result($id, $username, $email); // Replace with actual column names
+        $stmt->fetch();
+        $result = [$id, $username, $email]; // Store the results in an array or use them as needed
+        $stmt->close();
         
+        include'mail2.php';
         
         if ($result->num_rows == 0) {
             echo "Email does not exist.";
@@ -55,12 +54,12 @@ $result = [$email]; // Store the results in an array or use them as needed
             $stmt->execute();
 
             // Send a password reset email to the user
-            //$resetLink = "resetpassword.php?token=" . $resetToken; // Replace with your actual reset password page URL
-            //$emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
-            //$emailSubject = "Password Reset";
+            $resetLink = "resetpassword.php?token=" . $resetToken; // Replace with your actual reset password page URL
+            $emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
+            $emailSubject = "Password Reset";
             // Send the email using your preferred email sending method (e.g., PHPMailer, mail() function)
             // Replace the placeholders with your actual email sending code
-            include'mail2.php';
+
             // Redirect the user to a confirmation page
             header("Location: resetconfirmation.php");  
             exit();
