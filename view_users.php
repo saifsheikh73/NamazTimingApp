@@ -119,7 +119,7 @@ include("conn.php");
             $zipcode=$row['zipcode'];
             $state=$row['state'];
             $addresslink=$row['addresslink'];
-            $forladies=$row['forladies'];
+            $forladies=$row['reset_token'];
             $fajr_time=$row['fajr'];
             $zohar_time=$row['zohar'];
             $asr_time=$row['asr'];

@@ -1,4 +1,5 @@
 <?php
+include'conn.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -8,8 +9,8 @@ require '/home/questio2/PHPMailerTest/PHPMailer/src/SMTP.php';
 
 // Instantiation and passing [ICODE]true[/ICODE] enables exceptions
 $mail = new PHPMailer(true);
-//$resetToken = generateResetToken();
-//$resetLink = "namaz.questiondrive.com/resetpassword.php?token=" . $resetToken;
+$resetToken = generateResetToken();
+$resetLink = "namaz.questiondrive.com/resetpassword.php?token=" . $resetToken;
 try {
  //Server settings
  $mail->SMTPDebug = 2; // Enable verbose debug output
