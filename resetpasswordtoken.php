@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         //}
 
         $query = "SELECT * FROM user1 WHERE email = ?";
-        $stmt = $conn->prepare($query);
+        $stmt = $conn1->prepare($query);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Store the reset token and expiry time in the database
             $query = "UPDATE user1 SET reset_token = ?, reset_expiry = ? WHERE email = ?";
-            $stmt = $conn->prepare($query);
+            $stmt = $conn1->prepare($query);
             $stmt->bind_param("sss", $resetToken, $expiryTime, $email);
             $stmt->execute();
 
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         $stmt->close();
-        $conn->close();
+        $conn1->close();
     }
 }
 
