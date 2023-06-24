@@ -55,7 +55,7 @@ $mailPort = 587; // TCP port to connect to
 
             // Redirect the user to a confirmation page
             //header("Location: resetconfirmation.php");  
-            exit();
+            //exit();
         }
 
         $stmt->close();
