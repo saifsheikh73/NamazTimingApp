@@ -24,7 +24,7 @@ try {
 
 //Recipients
  $mail->setFrom('furqan@namaz.questiondrive.com', 'Mailer');
- $mail->addAddress('saifurrahmansheikh7@gmail.com', 'ResetPass'); // Add a recipient
+ $mail->addAddress($email, 'ResetPass'); // Add a recipient
  //$mail->addAddress('sadcompiler@gmail.com'); // Name is optional
  //$mail->addReplyTo('furqan@namaz.questiondrive.com', 'Information');
 //  $mail->addCC('cc@example.com');
@@ -36,8 +36,8 @@ try {
 
 // Content
  $mail->isHTML(true); // Set email format to HTML
- $mail->Subject = 'Here is the subject';
- $mail->Body = 'This is the HTML message body <b>in bold!</b> ' . $resetLink;
+ $mail->Subject = 'Reset Password';
+ $mail->Body = $emailContent;
  $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 $mail->send();

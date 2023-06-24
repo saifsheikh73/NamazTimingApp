@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Send a password reset email to the user
             $resetLink = "resetpassword.php?token=" . $resetToken; // Replace with your actual reset password page URL
             $emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
-            $emailSubject = "Password Reset";
+            //$emailContent = "Password Reset";
             // Send the email using your preferred email sending method (e.g., PHPMailer, mail() function)
             // Replace the placeholders with your actual email sending code
             include'mail2.php';
