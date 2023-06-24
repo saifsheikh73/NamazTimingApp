@@ -50,8 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             include'mail.php';
 
             // Redirect the user to a confirmation page
-            header("Location: resetconfirmation.php");  
-            exit();
+            //header("Location: resetconfirmation.php");  
+            //exit();
         }
 
         $stmt->close();
