@@ -14,8 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Perform your database query to check if the email exists
         // Replace the placeholders with your actual database connection code
        
-        $query = "SELECT * FROM user1 WHERE email = ?";
-        $stmt = $conn->prepare($query);
+        $sql = "SELECT * FROM user1 WHERE email = ?";
+        $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
