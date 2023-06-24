@@ -4,7 +4,7 @@ include'conn.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Process the form data
     $email = $_POST['email'];
-    include'mail2.php';
+    
 
     // Validate the form inputs
     if (empty($email)) {
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Check if the email exists in the database
         // Perform your database query to check if the email exists
         // Replace the placeholders with your actual database connection code
-        
+        include'mail2.php';
         $query = "SELECT * FROM user1 WHERE email = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("s", $email);
