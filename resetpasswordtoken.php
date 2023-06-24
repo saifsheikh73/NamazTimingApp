@@ -30,12 +30,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mailPort = 587; // TCP port to connect to
         
         $query = "SELECT * FROM user1 WHERE email = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows == 0) {
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();$stmt->execute();
+        $stmt->bind_result($email); // Replace with actual column names
+        $stmt->fetch();
+        $result = [$email]; // Store the results in an array or use them as needed
+        //$stmt->close();
+        
+        
+        
+        if (empty($result)) {
             echo "Email does not exist.";
         } else {
             // Generate and store a password reset token
