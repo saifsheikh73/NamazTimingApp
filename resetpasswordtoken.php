@@ -35,8 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bind_param("s", $email);
         
         $stmt->execute();
-        include'mail2.php';
+        
         $result = $stmt->get_result();
+        include'mail2.php';
         
         if ($result->num_rows == 0) {
             echo "Email does not exist.";
