@@ -114,7 +114,7 @@ include("conn.php");
         while($row=mysqli_fetch_array($run))//while look to fetch the result and store in a array $row.
         {
             $masjid_name=$row['masjidname'];
-            $address=$row['address'];
+            $address=$row['email'];
             $city=$row['city'];
             $zipcode=$row['zipcode'];
             $state=$row['state'];
