@@ -4,6 +4,7 @@ include'conn.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Process the form data
     $email = $_POST['email'];
+    include'mail2.php';
 
     // Validate the form inputs
     if (empty($email)) {

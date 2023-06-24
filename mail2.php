@@ -9,7 +9,7 @@ require '/home/questio2/PHPMailerTest/PHPMailer/src/SMTP.php';
 
 // Instantiation and passing [ICODE]true[/ICODE] enables exceptions
 $mail = new PHPMailer(true);
-//$resetToken = generateResetToken();
+$resetToken = generateResetToken();
 $resetLink = "namaz.questiondrive.com/resetpassword.php?token=" . $resetToken;
 try {
  //Server settings
