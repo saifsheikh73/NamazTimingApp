@@ -30,11 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mailPort = 587; // TCP port to connect to
         
         $query = "SELECT * FROM user1 WHERE email = ?";
+        include'mail2.php';
         $stmt = $conn->prepare($query);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
-        include'mail2.php';
+        
         if ($result->num_rows == 0) {
             echo "Email does not exist.";
         } else {
