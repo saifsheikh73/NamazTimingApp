@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt = $conn->prepare($query);
             $stmt->bind_param("sss", $resetToken, $expiryTime, $email);
             $stmt->execute();
-            include'mail2.php';
+            
             // Send a password reset email to the user
             $resetLink = "resetpassword.php?token=" . $resetToken; // Replace with your actual reset password page URL
             $emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
