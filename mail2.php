@@ -23,7 +23,7 @@ try {
  $mail->Port = $mailPort; // TCP port to connect to
 
 //Recipients
- $mail->setFrom('furqan@namaz.questiondrive.com', 'Mailer');
+ $mail->setFrom('furqan@namaz.questiondrive.com', 'Namaz Timing App');
  $mail->addAddress($email, 'ResetPass'); // Add a recipient
  //$mail->addAddress('sadcompiler@gmail.com'); // Name is optional
  //$mail->addReplyTo('furqan@namaz.questiondrive.com', 'Information');
