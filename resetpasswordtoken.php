@@ -1,5 +1,6 @@
 <?php
-include'conn.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Process the form data
@@ -12,7 +13,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Check if the email exists in the database
         // Perform your database query to check if the email exists
         // Replace the placeholders with your actual database connection code
-        
+        $servername = "localhost";
+        $username = "questio2_id20710658_db";
+        $password = "questio2_id20710658_db";
+        $database = "questio2_namaz_db";
+
+        $conn = new mysqli($servername, $username, $password, $database);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
         $query = "SELECT * FROM user1 WHERE email = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("s", $email);
@@ -38,7 +48,52 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //$emailSubject = "Password Reset";
             // Send the email using your preferred email sending method (e.g., PHPMailer, mail() function)
             // Replace the placeholders with your actual email sending code
-            //include'mail2.php';
+
+            
+
+require '/home/questio2/PHPMailerTest/PHPMailer/src/Exception.php';
+require '/home/questio2/PHPMailerTest/PHPMailer/src/PHPMailer.php';
+require '/home/questio2/PHPMailerTest/PHPMailer/src/SMTP.php';
+
+// Instantiation and passing [ICODE]true[/ICODE] enables exceptions
+$mail = new PHPMailer(true);
+//$resetToken = generateResetToken();
+$resetLink = "namaz.questiondrive.com/resetpassword.php?token=" . $resetToken;
+try {
+ //Server settings
+ $mail->SMTPDebug = 2; // Enable verbose debug output
+ $mail->isSMTP(); // Set mailer to use SMTP
+ $mail->Host = $mailHost; // Specify main and backup SMTP servers
+ $mail->SMTPAuth = true; // Enable SMTP authentication
+ $mail->Username = $mailUsername; // SMTP username
+ $mail->Password = $mailPassword; // SMTP password
+ $mail->SMTPSecure = $mailSMTPSecure; // Enable TLS encryption, [ICODE]ssl[/ICODE] also accepted
+ $mail->Port = $mailPort; // TCP port to connect to
+
+//Recipients
+ $mail->setFrom('furqan@namaz.questiondrive.com', 'Mailer');
+ $mail->addAddress('saifurrahmansheikh7@gmail.com', 'ResetPass'); // Add a recipient
+ //$mail->addAddress('sadcompiler@gmail.com'); // Name is optional
+ //$mail->addReplyTo('furqan@namaz.questiondrive.com', 'Information');
+//  $mail->addCC('cc@example.com');
+//  $mail->addBCC('bcc@example.com');
+
+// Attachments
+//  $mail->addAttachment('/home/cpanelusername/attachment.txt'); // Add attachments
+//  $mail->addAttachment('/home/cpanelusername/image.jpg', 'new.jpg'); // Optional name
+
+// Content
+ $mail->isHTML(true); // Set email format to HTML
+ $mail->Subject = 'Here is the subject';
+ $mail->Body = 'This is the HTML message body <b>in bold!</b> ' . $resetLink;
+ $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+$mail->send();
+ echo 'Message has been sent';
+
+} catch (Exception $e) {
+ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
 
             // Redirect the user to a confirmation page
             header("Location: resetconfirmation.php");  
@@ -72,7 +127,7 @@ function generateResetToken() {
 </head>
 <body>
     <h2>Reset Your Password</h2>
-    <form method="POST">
+    <form method="POST" action="">
         <div>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
