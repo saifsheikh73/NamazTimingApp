@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $stmt->bind_result($email); // Replace with actual column names
 $stmt->fetch();
 $result = [$email]; // Store the results in an array or use them as needed
-$stmt->close();
+
 
         
         
