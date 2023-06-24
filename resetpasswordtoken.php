@@ -46,11 +46,12 @@ $mailPort = 587; // TCP port to connect to
             $stmt->execute();
 
             // Send a password reset email to the user
-            $resetLink = "resetpassword.php?token=" . $resetToken; // Replace with your actual reset password page URL
-            $emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
-            $emailSubject = "Password Reset";
+            //$resetLink = "resetpassword.php?token=" . $resetToken; // Replace with your actual reset password page URL
+            //$emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
+            //$emailSubject = "Password Reset";
             // Send the email using your preferred email sending method (e.g., PHPMailer, mail() function)
             // Replace the placeholders with your actual email sending code
+            include'mail2.php';
 
             // Redirect the user to a confirmation page
             header("Location: resetconfirmation.php");  
@@ -84,7 +85,7 @@ function generateResetToken() {
 </head>
 <body>
     <h2>Reset Your Password</h2>
-    <form method="POST" action="">
+    <form method="POST">
         <div>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
