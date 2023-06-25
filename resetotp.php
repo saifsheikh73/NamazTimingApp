@@ -73,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 40px;
 }
 
 .login100-form-btn {
@@ -107,6 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 40px;
   }
   
   .otp-input {
