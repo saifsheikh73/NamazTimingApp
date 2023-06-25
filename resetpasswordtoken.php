@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Replace the placeholders with your actual email sending code
             include'mail.php';
             // Redirect the user to a confirmation page
-            header("Location: resetemailsent.php");  
+            header("Location: resetotp.php");  
             exit();
         }
 
