@@ -100,9 +100,11 @@
  
 				<form class="login100-form1">
 					
-                <div>
+                <div style="text-align: center;">
                     <span>Kindly check your email and click on the link to reset the password.</span>
                 </div>
+                <br>
+                <br>
                 <br>
                 <br>
 

@@ -36,7 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->store_result();
 
         if ($stmt->num_rows == 0) {
-            echo "Email does not exist.";
+            //echo "Email does not exist.";
+            echo'<script>alert("Email does not exist.")</script>';
         } else {
             // Generate and store a password reset token
             $resetToken = generateResetToken(); // Replace this with your actual token generation code
@@ -49,9 +50,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->execute();
             
             // Send a password reset email to the user
-            $resetLink = "namaz.questiondrive.com/resetpassword.php?token=" . $resetToken; // Replace with your actual reset password page URL
+            /*$resetLink = "namaz.questiondrive.com/resetpassword.php?token=" . $resetToken; // Replace with your actual reset password page URL
             $emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
-            $emailSub = "Password Reset";
+            $emailSub = "Password Reset";*/
+            $resetLink = $resetToken; // Replace with your actual reset password page URL
+            $emailContent = "Your OTP to reset password is " . $resetLink; // Customize the email content as needed
+            $emailSub = "Password Reset OTP";
+
+
             // Send the email using your preferred email sending method (e.g., PHPMailer, mail() function)
             // Replace the placeholders with your actual email sending code
             include'mail.php';
@@ -66,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Function to generate a random reset token
-function generateResetToken() {
+/*function generateResetToken() {
     $length = 32; // Length of the token
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $token = '';
@@ -74,7 +80,20 @@ function generateResetToken() {
         $token .= $characters[rand(0, strlen($characters) - 1)];
     }
     return $token;
+}*/
+
+// Function to generate OTP
+function generateResetToken() {
+    $length = 6; // Length of the token
+    $characters = '0123456789';
+    $token = '';
+    for ($i = 0; $i < $length; $i++) {
+        $token .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return $token;
 }
+
+
 ?>
 
 
