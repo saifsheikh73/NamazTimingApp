@@ -3,6 +3,14 @@ include 'conn.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sql = "SELECT * FROM user1 WHERE reset_token = '" . $_POST['token'] . "'";
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+    // Get the current time minus one hour
+$expirationTime = date('Y-m-d H:i:s', strtotime('-2 hour'));
+$sql2 = "UPDATE user1 SET reset_token = NULL, reset_expiry = NULL WHERE reset_token IS NOT NULL AND reset_expiry < ?";
+$stmt2 = $conn->prepare($sql2);
+$stmt2->bind_param("s", $expirationTime);
+$stmt2->execute();
+// Check the number of affected rows
+$affectedRows = $stmt2->affected_rows;
     
     if (mysqli_num_rows($result) > 0) {
         $fetchData = mysqli_fetch_assoc($result);
@@ -13,6 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo '<script>alert("OTP is incorrect or expired.");</script>';
     }
 }
+$stmt2->close();
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">

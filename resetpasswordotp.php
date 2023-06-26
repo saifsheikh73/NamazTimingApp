@@ -11,14 +11,7 @@ if (!isset($_GET['token'])) {
 
 $resetToken = $_GET['token'];
 
-// Get the current time minus one hour
-$expirationTime = date('Y-m-d H:i:s', strtotime('-1 hour'));
-$sql2 = "UPDATE user1 SET reset_token = NULL, reset_expiry = NULL WHERE reset_token IS NOT NULL AND reset_expiry < ?";
-$stmt2 = $conn->prepare($sql2);
-$stmt2->bind_param("s", $expirationTime);
-$stmt2->execute();
-// Check the number of affected rows
-$affectedRows = $stmt2->affected_rows;
+
 
 $sql1 = "SELECT * FROM user1 WHERE reset_token = ? AND reset_expiry > NOW()";
 $stmt1 = $conn->prepare($sql1);
@@ -87,7 +80,6 @@ if (mysqli_num_rows($result) > 0) {
     exit;
 }
 $stmt1->close();
-$stmt2->close();
 $conn->close();
 ?>
 
