@@ -1,6 +1,18 @@
 <?php
 include 'conn.php';
 
+// Check if the logout parameter is set in the POST request
+if (isset($_POST['logout'])) {
+    // Perform logout actions
+    session_unset(); // Clear all session variables
+    session_destroy(); // Destroy the session
+
+    // Redirect the user to the desired page after logout
+    header("Location: login.php");
+    exit();
+}
+
+
 // Fetch user data from the database
 $sql = "SELECT * FROM user1 WHERE id = '".$_SESSION['id']."'";
 $result = mysqli_query($conn, $sql);
@@ -135,7 +147,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                         <a type="button" class="login100-form-btn" href="EditMasjidDetails.php" value="Edit Masjid Details">Edit Masjid Details</a>
                     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <div class="container-login100-form-btn">
-                        <input type="submit" class="login100-form-btn" name="logout" value="Logout">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" class="login100-form-btn" name="logout" value="Logout">
                     </div>
                     &nbsp;
 

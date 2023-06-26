@@ -15,8 +15,6 @@ else
     echo'<script>alert("Username or Password is incorrect.")</script>';
 }
 }
-
-
 ?>
 
 

@@ -1,101 +1,80 @@
 <?php
 include 'conn.php';
 
-// Check if the reset token is provided in the URL
-if (!isset($_GET['token'])) {
-    // Handle the case when the reset token is missing
-    echo "Reset token is missing.";
-    // You can redirect the user to an error page or display an error message here
-    exit;
-}
+// Check if the "Remember Me" cookie exists and automatically log in the user if the remembercookie is valid
+if (isset($_COOKIE['remember_me'])) {
+    // Retrieve the remembercookie from the cookie
+    $remembercookie = $_COOKIE['remember_me'];
 
-$resetToken = $_GET['token'];
+    // Look up the remembercookie in the database
+    $query = "SELECT * FROM user1 WHERE remembercookie = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $remembercookie);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-// Get the current time minus one hour
-$expirationTime = date('Y-m-d H:i:s', strtotime('-1 hour'));
-$sql2 = "UPDATE user1 SET reset_token = NULL, reset_expiry = NULL WHERE reset_token IS NOT NULL AND reset_expiry < ?";
-$stmt2 = $conn->prepare($sql2);
-$stmt2->bind_param("s", $expirationTime);
-$stmt2->execute();
-// Check the number of affected rows
-$affectedRows = $stmt2->affected_rows;
+    if ($result->num_rows == 1) {
+        // remembercookie is valid, log the user in
+        $row = $result->fetch_assoc();
+        $_SESSION['id'] = $row['id'];
 
-$sql1 = "SELECT * FROM user1 WHERE reset_token = ? AND reset_expiry > NOW()";
-$stmt1 = $conn->prepare($sql1);
-$stmt1->bind_param("s", $resetToken);
-$stmt1->execute();
-$result1 = $stmt1->get_result();
-
-if ($result1->num_rows == 0) {
-    // The token is expired
-    echo "Reset token has expired.";
-    // You can redirect the user to an error page or display an error message here
-    exit;
-}
-
-// Validate the form inputs and perform password reset logic
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve the form inputs
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['confirm_password'];
-
-    // Perform necessary validations and checks
-    if (empty($password) || empty($confirmPassword)) {
-        echo "Please enter both password fields.";
-        exit;
+        // Redirect to the logged-in page
+        header("Location: loginsuccessfull.php");
+        exit();
+    } else {
+        // Clear the invalid "Remember Me" cookie
+        $cookieName = "remember_me";
+        setcookie($cookieName, '', time() - 3600, '/');
     }
-    if ($password !== $confirmPassword) {
-        echo "Passwords do not match.";
-        exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $sql = "SELECT * FROM user1 WHERE username = ? AND password = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $_POST['username'], $_POST['pass']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $fetchData = $result->fetch_assoc();
+        $_SESSION['id'] = $fetchData['id'];
+        $_SESSION['username'] = $fetchData['username'];
+
+        // Check if "Remember Me" checkbox is checked
+        if (isset($_POST['remember'])) {
+            // Generate a secure remembercookie
+            $remembercookie = bin2hex(random_bytes(32));
+
+            // Store the remembercookie in the database
+            $query = "UPDATE user1 SET remembercookie = ? WHERE id = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("si", $remembercookie, $_SESSION['id']);
+            $stmt->execute();
+            $stmt->close();
+
+            // Set the remembercookie as a cookie
+            $cookieName = "remember_me";
+            $cookieValue = $remembercookie;
+            $cookieExpiration = time() + (30 * 24 * 60 * 60); // 30 days
+            setcookie($cookieName, $cookieValue, $cookieExpiration, '/');
+        }
+
+        // Redirect to the logged-in page
+        header("Location: loginsuccessfull.php");
+        exit();
+    } else {
+        echo '<script>alert("Username or Password is incorrect.")</script>';
     }
-
-// Your password reset logic goes here
-// Assuming the password reset is successful, you can handle the success scenario
-// For example, update the password in the database and display a success message
-
-// Retrieve the user information from the database based on the reset token
-$resetToken = $_GET['token'];
-$query = "SELECT * FROM user1 WHERE reset_token = '$resetToken'";
-$result = mysqli_query($conn, $query);
-
-if (mysqli_num_rows($result) > 0) {
-    // Reset token is valid, proceed with password update
-
-    // Retrieve the user's ID
-    $user = mysqli_fetch_assoc($result);
-    $userId = $user['id'];
-
-    // Retrieve the new password from the form input
-    $newPassword = $_POST['password'];
-
-    // Hash the new password
-    //$hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-
-    // Update the password in the database
-    $updateQuery = "UPDATE user1 SET password = '$newPassword' WHERE id = '$userId'";
-    mysqli_query($conn, $updateQuery);
-
-    // Display a success message to the user
-    echo "Password reset successful. You can now log in with your new password.";
-} else {
-    // Invalid reset token
-    echo "Invalid reset token.";
 }
-
-
-    header("Location: resetconfirmation.php");
-    exit;
-}
-$stmt1->close();
-$stmt2->close();
-$conn->close();
 ?>
+
+<!-- Your HTML code... -->
 
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Reset Password</title>
+	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -128,29 +107,44 @@ $conn->close();
 			<div class="wrap-login100">
 				<div class="login100-form-title" style="background-image: url(images/bg-04.jpg);">
 					<span class="login100-form-title-1">
-						Reset Password
+						Sign In
 					</span>
 				</div>
 
 				<form class="login100-form validate-form" method="POST">
-                <input type="hidden" name="token" value="<?php echo $resetToken; ?>">
-					<div class="wrap-input100 validate-input m-b-26" data-validate="Password is required">
-						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="password" placeholder="Enter new password" required>
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+						<span class="label-input100">Username</span>
+						<input class="input100" type="text" name="username" placeholder="Enter username" required>
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-						<span class="label-input100">Confirm Password</span>
-						<input class="input100" type="password" name="confirm_password" placeholder="Repeat password" required>
+						<span class="label-input100">Password</span>
+						<input class="input100" type="password" name="pass" placeholder="Enter password" required>
 						<span class="focus-input100"></span>
 					</div>
 
-					
+					<div class="flex-sb-m w-full p-b-30">
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="remember" type="checkbox" name="remember">
+							<label class="label-checkbox100" for="remember">
+								Remember me
+							</label>
+						</div>
+
+						<div>
+							<a href="resetpasswordremembercookie.php" class="txt1">
+								Forgot Password?
+							</a>
+						</div>
+					</div>
 
 					<div class="container-login100-form-btn">
-						<input type="submit" class="login100-form-btn" value="Reset"> 
+						<input type="submit" class="login100-form-btn" value="Login"> 
 						</div>
+						&nbsp;&nbsp;
+						<div class="container-login100-form-btn">
+						<button type="button" class="login100-form-btn" onclick="window.location.href='signup.php'">Sign up ?</button>
 					</div>
 					</div>
 				</form>
@@ -177,4 +171,3 @@ $conn->close();
 
 </body>
 </html>
-

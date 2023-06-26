@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: resetpasswordotp.php?token=" . $_POST['token']);
         exit(); // Add this line to stop further script execution
     } else {
-        echo '<script>alert("Incorrect OTP.");</script>';
+        echo '<script>alert("OTP is incorrect or expired.");</script>';
     }
 }
 ?>
@@ -140,23 +140,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 
  
 				<form class="login100-form1" method="POST">
-                <div class="container">
-                <div class="form-container">
-                <div class="otp-container">
-                <input class="otp-input" type="text" id="digit1" maxlength="1" required>
-                <input class="otp-input" type="text" id="digit2" maxlength="1" required>
-                <input class="otp-input" type="text" id="digit3" maxlength="1" required>
-                <input class="otp-input" type="text" id="digit4" maxlength="1" required>
-                <input class="otp-input" type="text" id="digit5" maxlength="1" required>
-                <input class="otp-input" type="text" id="digit6" maxlength="1" required>
-                <input type="hidden" id="token" name="token">
-                </div>
+        <div class="container">
+    <div class="form-container">
+        <div class="otp-container">
+            <input class="otp-input" type="text" id="digit1" maxlength="1" onkeyup="moveToNext(this, 'digit2')" required>
+            <input class="otp-input" type="text" id="digit2" maxlength="1" onkeyup="moveToNext(this, 'digit3')" required>
+            <input class="otp-input" type="text" id="digit3" maxlength="1" onkeyup="moveToNext(this, 'digit4')" required>
+            <input class="otp-input" type="text" id="digit4" maxlength="1" onkeyup="moveToNext(this, 'digit5')" required>
+            <input class="otp-input" type="text" id="digit5" maxlength="1" onkeyup="moveToNext(this, 'digit6')" required>
+            <input class="otp-input" type="text" id="digit6" maxlength="1" required>
+            <input type="hidden" id="token" name="token">
+        </div>
+    </div>
+    <br>
+    <br>
+</div>
 
+<script>
+    function moveToNext(currentInput, nextInputId) {
+        if (currentInput.value.length === currentInput.maxLength) {
+            document.getElementById(nextInputId).focus();
+        }
+    }
+</script>
 
-                </div>
-                <br>
-                <br>
-                </div>               
 
 				<div class="container-login100-form-btn1">
 						<input type="submit" class="login100-form-btn" value="Submit"> 
