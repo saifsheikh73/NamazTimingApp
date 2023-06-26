@@ -13,13 +13,13 @@ $resetToken = $_GET['token'];
 
 
 
-$sql = "SELECT * FROM user1 WHERE reset_token = ? AND reset_expiry > NOW()";
-$stmt = $conn->prepare($sql1);
-$stmt->bind_param("s", $resetToken);
-$stmt->execute();
-$result = $stmt->get_result();
+$sql1 = "SELECT * FROM user1 WHERE reset_token = ? AND reset_expiry > NOW()";
+$stmt1 = $conn->prepare($sql1);
+$stmt1->bind_param("s", $resetToken);
+$stmt1->execute();
+$result1 = $stmt1->get_result();
 
-if ($result->num_rows == 0) {
+if ($result1->num_rows == 0) {
     // The token is expired
     echo "Reset token has expired.";
     // You can redirect the user to an error page or display an error message here
@@ -79,7 +79,7 @@ if (mysqli_num_rows($result) > 0) {
     header("Location: resetconfirmation.php");
     exit;
 }
-$stmt->close();
+$stmt1->close();
 $conn->close();
 ?>
 
