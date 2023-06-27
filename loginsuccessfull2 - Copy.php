@@ -148,12 +148,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
    
 <!--Include Bootstrap and FontAwesome CDNs -->
-<link rel="stylesheet" href="clockscripts/1.css" />
-<link rel="stylesheet" href="clockscripts/2.css" />
-<link rel="stylesheet" href="clockscripts/3.css" />
-<script src="clockscripts1/.js"></script>
-<script src="clockscripts/2.js"></script>
-<script src="clockscripts/3.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clockpicker/0.0.7/bootstrap-clockpicker.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clockpicker/0.0.7/bootstrap-clockpicker.min.js"></script>
 
 <script>
   $(document).ready(function() {
