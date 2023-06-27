@@ -117,13 +117,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 					
 					<div class="wrap-input100 validate-input m-b-26">
 						<span class="label-input100">Secondary Email</span>
-						<input class="input100" type="number" name="email2" placeholder="Enter secondary email" value="<?php echo $email2; ?>">
+						<input class="input100" type="text" name="email2" placeholder="Enter secondary email" value="<?php echo $email2; ?>">
 						<span class="focus-input100"></span>
 					</div>
 					
 					<div class="wrap-input100 validate-input m-b-26">
 						<span class="label-input100">Secondary Mobile no.</span>
-						<input class="input100" type="text" name="mobileno2" placeholder="Enter secondary mobile no." value="<?php echo $mobileno2; ?>">
+						<input class="input100" type="number" name="mobileno2" placeholder="Enter secondary mobile no." value="<?php echo $mobileno2; ?>">
 						<span class="focus-input100"></span>
 					</div>
 					

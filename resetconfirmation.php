@@ -58,6 +58,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 40px;
 }
 
 .login100-form-btn {
