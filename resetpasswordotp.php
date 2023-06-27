@@ -5,7 +5,6 @@ include 'conn.php';
 if (!isset($_GET['token'])) {
     // Handle the case when the reset token is missing
 	echo '<script>alert("Reset token is missing.");</script>';
-	header("Location: resetpasswordotp.php");
     // You can redirect the user to an error page or display an error message here
     exit;
 }
