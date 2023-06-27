@@ -5,6 +5,7 @@ include 'conn.php';
 if (!isset($_GET['token'])) {
     // Handle the case when the reset token is missing
 	echo '<script>alert("Reset token is missing.");</script>';
+	header("Location: resetpasswordotp.php");
     // You can redirect the user to an error page or display an error message here
     exit;
 }
@@ -29,6 +30,7 @@ $stmt1->store_result();
 if ($stmt1->num_rows === 0) {
     // The token is expired
     echo '<script>alert("Reset token has expired.");</script>';
+	header("Location: resetpasswordotp.php");
     // You can redirect the user to an error page or display an error message here
     exit;
 }
