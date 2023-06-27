@@ -29,7 +29,7 @@ $stmt1->store_result();
 if ($stmt1->num_rows === 0) {
     // The token is expired
     echo '<script>alert("Reset token has expired.");</script>';
-	header("Location: resetotp.php");
+	echo '<script>window.location.href = "resetotp.php";</script>';
     // You can redirect the user to an error page or display an error message here
     exit;
 }
