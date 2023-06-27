@@ -19,7 +19,7 @@ $affectedRows = $stmt2->affected_rows;
         header("Location: resetpasswordotp.php?token=" . $_POST['token']);
         exit(); // Add this line to stop further script execution
     } else {
-        //echo '<script>alert("OTP is incorrect or expired.");</script>';
+        echo '<script>alert("OTP is incorrect or expired.");</script>';
     }
     $stmt2->close();
 }

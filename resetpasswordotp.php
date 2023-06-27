@@ -21,7 +21,7 @@ $stmt1->bind_param("s", $resetToken);
 $stmt1->execute();
 $result1 = $stmt1->get_result();
 
-if ($result1->num_rows == 0) {
+while ($result1->num_rows == 0) {
     // The token is expired
     echo "Reset token has expired.";
     // You can redirect the user to an error page or display an error message here
