@@ -1,19 +1,24 @@
 <?php
 include 'conn.php';
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 // Check if the reset token is provided in the URL
 if (!isset($_GET['token'])) {
     // Handle the case when the reset token is missing
-    echo "Reset token is missing.";
+	echo '<script>alert("Reset token is missing.");</script>';
     // You can redirect the user to an error page or display an error message here
     exit;
 }
 
 $resetToken = $_GET['token'];
 
-
+// Get the current time minus one hour
+$expirationTime = date('Y-m-d H:i:s', strtotime('-2 hour'));
+$sql2 = "UPDATE user1 SET reset_token = NULL, reset_expiry = NULL WHERE reset_token IS NOT NULL AND reset_expiry < ?";
+$stmt2 = $conn->prepare($sql2);
+$stmt2->bind_param("s", $expirationTime);
+$stmt2->execute();
+// Check the number of affected rows
+$affectedRows = $stmt2->affected_rows;
 
 $sql1 = "SELECT * FROM user1 WHERE reset_token = ? AND reset_expiry > NOW()";
 $stmt1 = $conn->prepare($sql1);
@@ -23,10 +28,11 @@ $stmt1->store_result();
 
 if ($stmt1->num_rows === 0) {
     // The token is expired
-    echo "Reset token has expired.";
+    echo '<script>alert("Reset token has expired.");</script>';
     // You can redirect the user to an error page or display an error message here
     exit;
 }
+
 
 // Validate the form inputs and perform password reset logic
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -82,6 +88,7 @@ if (mysqli_num_rows($result) > 0) {
     exit;
 }
 $stmt1->close();
+$stmt2->close();
 $conn->close();
 ?>
 

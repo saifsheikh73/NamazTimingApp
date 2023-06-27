@@ -4,14 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sql = "SELECT * FROM user1 WHERE reset_token = '" . $_POST['token'] . "'";
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 
-    // Get the current time minus one hour
-$expirationTime = date('Y-m-d H:i:s', strtotime('-1 hour'));
-$sql2 = "UPDATE user1 SET reset_token = NULL, reset_expiry = NULL WHERE reset_token IS NOT NULL AND reset_expiry < ?";
-$stmt2 = $conn->prepare($sql2);
-$stmt2->bind_param("s", $expirationTime);
-$stmt2->execute();
-// Check the number of affected rows
-$affectedRows = $stmt2->affected_rows;
+    
     
     if (mysqli_num_rows($result) > 0) {
         $fetchData = mysqli_fetch_assoc($result);
@@ -21,9 +14,7 @@ $affectedRows = $stmt2->affected_rows;
     } else {
         echo '<script>alert("OTP is incorrect or expired.");</script>';
     }
-    $stmt2->close();
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -154,12 +145,12 @@ $affectedRows = $stmt2->affected_rows;
         <div class="container">
     <div class="form-container">
         <div class="otp-container">
-        <input class="otp-input" type="number" id="digit1" maxlength="1" onkeyup="moveToNext(this, 'digit2', '')" required>
-        <input class="otp-input" type="number" id="digit2" maxlength="1" onkeyup="moveToNext(this, 'digit3', 'digit1')" required>
-        <input class="otp-input" type="number" id="digit3" maxlength="1" onkeyup="moveToNext(this, 'digit4', 'digit2')" required>
-        <input class="otp-input" type="number" id="digit4" maxlength="1" onkeyup="moveToNext(this, 'digit5', 'digit3')" required>
-        <input class="otp-input" type="number" id="digit5" maxlength="1" onkeyup="moveToNext(this, 'digit6', 'digit4')" required>
-        <input class="otp-input" type="number" id="digit6" maxlength="1" onkeyup="moveToNext(this, 'digit6', 'digit5')" required>
+        <input class="otp-input" type="text" id="digit1" maxlength="1" onkeyup="moveToNext(this, 'digit2', '')" required>
+        <input class="otp-input" type="text" id="digit2" maxlength="1" onkeyup="moveToNext(this, 'digit3', 'digit1')" required>
+        <input class="otp-input" type="text" id="digit3" maxlength="1" onkeyup="moveToNext(this, 'digit4', 'digit2')" required>
+        <input class="otp-input" type="text" id="digit4" maxlength="1" onkeyup="moveToNext(this, 'digit5', 'digit3')" required>
+        <input class="otp-input" type="text" id="digit5" maxlength="1" onkeyup="moveToNext(this, 'digit6', 'digit4')" required>
+        <input class="otp-input" type="text" id="digit6" maxlength="1" onkeyup="moveToNext(this, 'digit6', 'digit5')" required>
 
         <input type="hidden" id="token" name="token">
         </div>
