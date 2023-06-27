@@ -166,20 +166,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 </script>
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        flatpickr('.input100', {
-            enableTime: true,
-            noCalendar: true,
-            dateFormat: "h:i K",
-            time_24hr: false,
-            isableMobile: false, // Disable or remove this line
-        });
-    });
-</script>
-
 </body>
 
 </html>
