@@ -1,7 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 include 'conn.php';
 include 'allcssjs.php';
 
@@ -68,9 +65,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>Edit Namaz Time</title>    
+
+
 </head>
 
 <body onmousedown="return false" onselectstart="return false">
@@ -84,60 +81,48 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     </span>
                 </div>
                 <form class="login100-form validate-form" method='POST'>
-
                     <div class="wrap-input1001 validate-input m-b-26" data-validate="Time is required">
-                        <span class="label-input100">Fajr</span>
-                        <div class="input-group clockpicker" data-target="#TimePickerInput">
-                        <input type="text" class="form-control" id="TimePickerInput" name="fajr" placeholder="Fajr" value="<?php echo $fajrtime; ?>">
-                        </div>
+                         <span class="label-input100">Fajr</span>
+                            <input class="input100" type="text" name="fajr" placeholder="Fajr" value="<?php echo $fajrtime; ?>">
+                        <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input1001 validate-input m-b-26" data-validate="Time is required">
-                        <span class="label-input100">Zohar</span>
-                        <div class="input-group clockpicker" data-target="#TimePickerInput">
-                        <input type="text" class="form-control" id="TimePickerInput" name="zohar" placeholder="Zohar" value="<?php echo $zohartime; ?>">
-                        </div>
-                    </div>
-
+  <span class="label-input100">Zohar</span>
+  <div class="input-group clockpicker" data-target="#zoharTimePickerInput">
+    <input type="text" class="form-control" id="zoharTimePickerInput" name="zohar" placeholder="Zohar" value="<?php echo $zohartime; ?>">
+    
+  </div>
+</div>
                     <div class="wrap-input1001 validate-input m-b-26" data-validate="Time is required">
                         <span class="label-input100">Asr</span>
-                        <div class="input-group clockpicker" data-target="#TimePickerInput">
-                        <input type="text" class="form-control" id="TimePickerInput" name="Asr" placeholder="Asr" value="<?php echo $asrtime; ?>">
-                        </div>
+                        <input class="input100" type="text" name="asr" placeholder="Asr" value="<?php echo $asrtime; ?>">
                     </div>
-
                     <div class="wrap-input1001 validate-input m-b-26" data-validate="Time is required">
                         <span class="label-input100">Maghrib</span>
-                        <div class="input-group clockpicker" data-target="#TimePickerInput">
-                        <input type="text" class="form-control" id="TimePickerInput" name="maghrib" placeholder="Maghrib" value="<?php echo $maghribtime; ?>">
-                        </div>
+                        <input class="input100" type="text" name="maghrib" placeholder="Maghrib" value="<?php echo $maghribtime; ?>">
+                        <span class="focus-input100"></span>
                     </div>
-
                     <div class="wrap-input1001 validate-input m-b-26" data-validate="Time is required">
                         <span class="label-input100">Isha</span>
-                        <div class="input-group clockpicker" data-target="#TimePickerInput">
-                        <input type="text" class="form-control" id="TimePickerInput" name="isha" placeholder="Isha" value="<?php echo $ishatime; ?>">
-                        </div>
+                        <input class="input100" type="text" name="isha" placeholder="Isha" value="<?php echo $ishatime; ?>">
+                        <span class="focus-input100"></span>
                     </div>
-
                     <div class="wrap-input1001 validate-input m-b-26" data-validate="Time is required">
                         <span class="label-input100">Juma</span>
-                        <div class="input-group clockpicker" data-target="#TimePickerInput">
-                        <input type="text" class="form-control" id="TimePickerInput" name="juma" placeholder="Juma" value="<?php echo $jumatime; ?>">
-                        </div>
+                        <input class="input100" type="text" name="juma" placeholder="Juma" value="<?php echo $jumatime; ?>">
+                        <span class="focus-input100"></span>
                     </div>
 
                     <div class="container-login100-form-btn">
                         <input type="submit" class="login100-form-btn" value="Update">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                     &nbsp;
-
                     <div class="container-login100-form-btn">
-                        <input type="button" class="login100-form-btn" onclick="window.location.href='EditMasjidDetails.php'" value="Edit Masjid Details">
+                    <input type="button" class="login100-form-btn" onclick="window.location.href='EditMasjidDetails.php'" value="Edit Masjid Details">
                     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
                     <div class="container-login100-form-btn">
-                        <input type="submit" class="login100-form-btn" name="logout" value="Logout">
+                    <input type="submit" class="login100-form-btn" name="logout" value="Logout">
                     </div>
                     &nbsp;
 
@@ -146,8 +131,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         </div>
     </div>
 
-   
-<!--Include Bootstrap and FontAwesome CDNs -->
+<!--ZOHAR Include Bootstrap and FontAwesome CDNs -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clockpicker/0.0.7/bootstrap-clockpicker.min.css" />
@@ -179,6 +163,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         });
     });
 </script>
+
+
 
 </body>
 

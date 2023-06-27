@@ -28,6 +28,7 @@ include("conn.php");
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/custommain.css">
 <!--===============================================================================================-->
 </head>
 
@@ -36,30 +37,7 @@ include("conn.php");
 //<a href="https://www.google.com/maps/search/masjid+near+me" class="login100-form-btn">masjid near me</a>
 </div>-->
 
-<style>
-  .button {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    padding: 10px;
-    background-color: #3498db;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-  }
-</style>
-<style>
-  .button2 {
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    padding: 10px;
-    background-color: #3498db;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-  }
-</style>
+
 
 <a href="https://www.google.com/maps/search/masjid+near+me" class="button">Masjid near me</a>
 <a href="login.php" class="button2">Masjid login</a>

@@ -25,69 +25,11 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/custommain.css">
 <!--===============================================================================================-->
 </head>
 <body>
-
-<style>
-
-.login100-form1 {
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 43px 88px 88px 54px;
-}
-
-.login100-form-title-2 {
-  font-family: Poppins-Bold;
-  font-size: 30px;
-  color: #fff;
-  text-transform: uppercase;
-  line-height: 1.2;
-  text-align: center;
-}
-
-.container-login100-form-btn1 {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.login100-form-btn {
-    padding: 0 20px;
-    min-width: 160px;
-    height: 50px;
-    background-color: #57b846;
-    border-radius: 25px;
-    font-family: Poppins-Regular;
-    font-size: 16px;
-    color: #fff;
-    line-height: 1.2;
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    transition: all 0.4s;
-}
-
-.custom-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #57b846;
-}
-
-.custom-btn:hover {
-    background-color: #333333;
-}
-</style>
-
-    
+  
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
