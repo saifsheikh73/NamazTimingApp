@@ -19,9 +19,9 @@ $sql1 = "SELECT * FROM user1 WHERE reset_token = ? AND reset_expiry > NOW()";
 $stmt1 = $conn->prepare($sql1);
 $stmt1->bind_param("s", $resetToken);
 $stmt1->execute();
-$result1 = $stmt1->get_result();
+$stmt1->store_result();
 
-while ($result1->num_rows == 0) {
+if ($stmt1->num_rows === 0) {
     // The token is expired
     echo "Reset token has expired.";
     // You can redirect the user to an error page or display an error message here
