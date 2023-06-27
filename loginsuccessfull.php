@@ -102,7 +102,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     <div class="wrap-input1001 validate-input m-b-26" data-validate="Time is required">
                         <span class="label-input100">Asr</span>
                         <div class="input-group clockpicker" data-target="#TimePickerInput">
-                        <input type="text" class="form-control" id="TimePickerInput" name="Asr" placeholder="Asr" value="<?php echo $asrtime; ?>">
+                        <input type="text" class="form-control" id="TimePickerInput" name="asr" placeholder="Asr" value="<?php echo $asrtime; ?>">
                         </div>
                     </div>
 
