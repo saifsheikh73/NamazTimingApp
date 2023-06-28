@@ -19,11 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Perform your database query to check if the email exists
         // Replace the placeholders with your actual database connection code
         $servername = "localhost"; 
-        $username = "questio2_id20710658_db"; 
+        $username1 = "questio2_id20710658_db"; 
         $password = "questio2_id20710658_db"; 
         $database = "questio2_namaz_db"; 
         // Create connection 
-        $conn = new mysqli($servername, $username, $password, $database); 
+        $conn = new mysqli($servername, $username1, $password, $database); 
         // Check connection 
         if ($conn->connect_error) { 
         die("Connection failed: " . $conn->connect_error); } 
@@ -44,22 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //echo "Email does not exist.";
             echo'<script>alert("Email does not exist.")</script>';
         } else {
-            // Generate and store a password reset token
-            $resetToken = generateResetToken(); // Replace this with your actual token generation code
-            $expiryTime = date('Y-m-d H:i:s', strtotime('+1 hour')); // Set the expiry time for the token
-
-            // Store the reset token and expiry time in the database
-            $query = "UPDATE user1 SET reset_token = ?, reset_expiry = ? WHERE email = ?";
-            $stmt = $conn->prepare($query);
-            $stmt->bind_param("sss", $resetToken, $expiryTime, $email);
-            $stmt->execute();
-            
-            // Send a password reset email to the user
-            /*$resetLink = "namaz.questiondrive.com/resetpassword.php?token=" . $resetToken; // Replace with your actual reset password page URL
-            $emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
-            $emailSub = "Password Reset";*/
-            $resetLink = $resetToken; // Replace with your actual reset password page URL
-            $emailContent = "Your OTP to reset password is " . $resetLink; // Customize the email content as needed
+            $stmt->bind_result($Id, $username, $email, $reset_token, $reset_expiry);
+            $stmt->fetch();
+            $emailContent = "Your username is " . $username; // Customize the email content as needed
             $emailSub = "Password Reset OTP";
 
 
@@ -88,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }*/
 
 // Function to generate OTP
-function generateResetToken() {
+/*function generateResetToken() {
     $length = 6; // Length of the token
     $characters = '0123456789';
     $token = '';
@@ -96,7 +83,7 @@ function generateResetToken() {
         $token .= $characters[rand(0, strlen($characters) - 1)];
     }
     return $token;
-}
+}*/
 
 
 ?>
