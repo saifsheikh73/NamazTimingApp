@@ -19,11 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Perform your database query to check if the email exists
         // Replace the placeholders with your actual database connection code
         $servername = "localhost"; 
-        $username = "questio2_id20710658_db"; 
+        $username1 = "questio2_id20710658_db"; 
         $password = "questio2_id20710658_db"; 
         $database = "questio2_namaz_db"; 
         // Create connection 
-        $conn = new mysqli($servername, $username, $password, $database); 
+        $conn = new mysqli($servername, $username1, $password, $database); 
         // Check connection 
         if ($conn->connect_error) { 
         die("Connection failed: " . $conn->connect_error); } 
@@ -40,6 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute();
         $stmt->store_result();
 
+        $stmt2 = $conn->prepare("SELECT username FROM user1 WHERE email = ?");
+        $stmt2->bind_param("s", $email);
+        $stmt2->execute();
+        $stmt2->store_result();
+
         if ($stmt->num_rows == 0) {
             //echo "Email does not exist.";
             echo'<script>alert("Email does not exist.")</script>';
@@ -53,13 +58,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt = $conn->prepare($query);
             $stmt->bind_param("sss", $resetToken, $expiryTime, $email);
             $stmt->execute();
-            
+
+            $stmt2->bind_result($username);
+            $stmt2->fetch();
+
             // Send a password reset email to the user
-            /*$resetLink = "namaz.questiondrive.com/resetpassword.php?token=" . $resetToken; // Replace with your actual reset password page URL
-            $emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
+            $resetLink = "namaz.questiondrive.com/resetpassword.php"; // Replace with your actual reset password page URL
+            /*$emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
             $emailSub = "Password Reset";*/
-            $resetLink = $resetToken; // Replace with your actual reset password page URL
-            $emailContent = "Your OTP to reset password is " . $resetLink; // Customize the email content as needed
+            $resetOTP = $resetToken; // Replace with your actual reset password page URL
+            $emailContent = "Hello your user name is " . $username . "\n\n";
+            $emailContent .= "and your OTP to reset password is " . $resetOTP . "\n\n"; // Customize the email content as needed
+            $emailContent .= "Click on link to enter OTP for password reset " . $resetLink; // Customize the email content as needed
             $emailSub = "Password Reset OTP";
 
 
