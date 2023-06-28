@@ -63,14 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt2->fetch();
 
             // Send a password reset email to the user
-            $resetLink = "namaz.questiondrive.com/resetotp.php?token=" . $resetToken; // Replace with your actual reset password page URL
+            $resetLink = "namaz.questiondrive.com/resetpassword.php?token=" . $resetToken; // Replace with your actual reset password page URL
             /*$emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
             $emailSub = "Password Reset";*/
             $resetOTP = $resetToken; // Replace with your actual reset password page URL
-            $emailContent = "Hello your user name is " . $username . "\n\n";
-            $emailContent .= "and your OTP to reset password is " . $resetOTP . "\n\n"; // Customize the email content as needed
-            $emailContent .= '<p>Click on the button below to enter the OTP for password reset:</p>';
-            $emailContent .= '<a href="' . $resetLink . '" style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 4px;">Reset Password</a>';            
+            $emailContent = '<p style="font-size: 16px;">Hello,<br>Your username is <strong style="font-size: 18px;">' . $username . '</strong></p>';
+            $emailContent .= '<p style="font-size: 16px;">Your OTP to reset password is <strong style="font-size: 18px;">' . $resetOTP . '</strong></p>';
+            $emailContent .= '<p style="font-size: 16px;">Click on the button below to enter the OTP for password reset:</p><br>';
+            $emailContent .= '<a href="' . $resetLink . '" style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 4px; font-size: 16px;">Reset Password</a>';
             $emailSub = "Password Reset OTP";
 
             // Redirect the user to a confirmation page
