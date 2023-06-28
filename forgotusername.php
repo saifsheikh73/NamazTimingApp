@@ -54,12 +54,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $emailContent = "Your username is " . $username; // Customize the email content as needed
             $emailSub = "Username";
 
-
+            // Redirect the user to a confirmation page
+            header("Location: resetotp.php");  
+            
             // Send the email using your preferred email sending method (e.g., PHPMailer, mail() function)
             // Replace the placeholders with your actual email sending code
             include'mail.php';
-            // Redirect the user to a confirmation page
-            header("Location: resetotp.php");  
+            
             exit();
         }
 
