@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mailSMTPSecure = 'tls'; // Enable TLS encryption, [ICODE]ssl[/ICODE] also accepted
         $mailPort = 587; // TCP port to connect to
         
-        $query = "SELECT * FROM user1 WHERE email = ?";
+        $query = "SELECT username, email, reset_token, reset_expiry FROM user1 WHERE email = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -63,8 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
             $emailSub = "Password Reset";*/
             $resetLink = $resetToken; // Replace with your actual reset password page URL
-            $emailContent = "Hello " . $username . ",\n\n";
-            $emailContent .= "Your OTP to reset password is " . $resetLink; // Customize the email content as needed
+            $emailContent = "Hello your username is " . $username . "\n\n";
+            $emailContent .= "and your OTP to reset password is " . $resetLink; // Customize the email content as needed
             $emailSub = "Password Reset OTP";
 
 
