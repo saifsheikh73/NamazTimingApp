@@ -65,7 +65,7 @@ include 'allcssjs.php';
             <th class="text-center">Last updated on</th>
             <th class="text-center">Reset token</th>
             <th class="text-center">Reset Expiry</th>
-            <th class="text-center">RememberMe cookie</th>
+            <!--<th class="text-center">RememberMe cookie</th>-->
         </tr>
         </thead>
 
@@ -97,7 +97,7 @@ include 'allcssjs.php';
             $timestamp=$row['timestamp'];
             $reset_token=$row['reset_token'];
             $reset_expiry=$row['reset_expiry'];
-            $remembercookie=$row['remembercookie'];
+            //$remembercookie=$row['remembercookie'];
             $date = date('d/m/Y', strtotime($timestamp));
             ?>
 
@@ -123,7 +123,7 @@ include 'allcssjs.php';
             <td><?php echo $date;  ?></td>
             <td><?php echo $reset_token;  ?></td>
             <td><?php echo $reset_expiry;  ?></td>
-            <td><?php echo $remembercookie;  ?></td>
+            <!--<td><?php echo $remembercookie;  ?></td>-->
             
             <!--btn btn-danger is a bootstrap button to show danger-->
         </tr>

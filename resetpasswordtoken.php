@@ -67,8 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             /*$emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
             $emailSub = "Password Reset";*/
             $resetOTP = $resetToken; // Replace with your actual reset password page URL
-            $emailContent = '<p style="font-size: 16px;">Hello,<br>Your username is <strong style="font-size: 18px;">' . $username . '</strong>.<br>Your OTP to reset password is <strong style="font-size: 18px;">' . $resetOTP . '</strong></p>';
-            $emailContent .= '<p style="font-size: 16px;">Click on the button below to reset password</p><br>';
+            $emailContent = '<p style="font-size: 16px;">Assalamualaikum,<br>Your username is <strong style="font-size: 18px;">' . $username . '</strong>.<br>Your OTP to reset password is <strong style="font-size: 18px;">' . $resetOTP . '</strong></p>';
+            $emailContent .= '<p style="font-size: 16px;">Enter OTP in App or click on the button below to reset password</p><br>';
             $emailContent .= '<a href="' . $resetLink . '" style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 4px; font-size: 16px;">Reset Password</a>';
             $emailSub = "Password Reset OTP";
 

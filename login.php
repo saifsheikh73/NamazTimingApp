@@ -62,7 +62,7 @@ else
 
 						<div>
 							<a href="resetpasswordtoken.php" class="txt1">
-								Forgot Password?
+								Forgot Username or Password?
 							</a>
 						</div>
 					</div>
