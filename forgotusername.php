@@ -40,8 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute();
         $stmt->store_result();
 
-        $query2 = "SELECT * FROM user1 WHERE email = ?";
-        $stmt2 = $conn->prepare($query2);
+        $stmt2 = $conn->prepare("SELECT username FROM user1 WHERE email = ?");
         $stmt2->bind_param("s", $email);
         $stmt2->execute();
         $stmt2->store_result();
