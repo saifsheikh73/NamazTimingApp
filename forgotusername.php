@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt2->bind_result($username);
             $stmt2->fetch();
             $emailContent = "Your username is " . $username; // Customize the email content as needed
-            $emailSub = "Password Reset OTP";
+            $emailSub = "Username";
 
 
             // Send the email using your preferred email sending method (e.g., PHPMailer, mail() function)
@@ -65,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         $stmt->close();
+        $stmt2->close();
         $conn->close();
     }
 }
