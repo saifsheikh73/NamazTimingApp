@@ -34,11 +34,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mailSMTPSecure = 'tls'; // Enable TLS encryption, [ICODE]ssl[/ICODE] also accepted
         $mailPort = 587; // TCP port to connect to
         
-        $query = "SELECT username, email, reset_token, reset_expiry FROM user1 WHERE email = ?";
+        $query = "SELECT * FROM user1 WHERE email = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
+        
 
         if ($stmt->num_rows == 0) {
             //echo "Email does not exist.";
@@ -57,13 +58,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt = $conn->prepare($query);
             $stmt->bind_param("sss", $resetToken, $expiryTime, $email);
             $stmt->execute();
-            
+
+            $query2 = "SELECT username FROM user1 WHERE email = ?";
+            $stmt2 = $conn->prepare($query2);
+            $stmt2->bind_param("s", $email);
+            $stmt2->execute();
+            $stmt2->store_result();
+
+
             // Send a password reset email to the user
             /*$resetLink = "namaz.questiondrive.com/resetpassword.php?token=" . $resetToken; // Replace with your actual reset password page URL
             $emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
             $emailSub = "Password Reset";*/
             $resetLink = $resetToken; // Replace with your actual reset password page URL
-            $emailContent = "Hello your username is " . $username . "\n\n";
+            $emailContent = "Hello your username is " . $stmt2 . "\n\n";
             $emailContent .= "and your OTP to reset password is " . $resetLink; // Customize the email content as needed
             $emailSub = "Password Reset OTP";
 
@@ -77,6 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         $stmt->close();
+        $stmt2->close();
         $conn->close();
     }
 }
