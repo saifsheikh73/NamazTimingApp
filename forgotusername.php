@@ -40,12 +40,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute();
         $stmt->store_result();
 
+        $query2 = "SELECT * FROM user1 WHERE email = ?";
+        $stmt2 = $conn->prepare($query2);
+        $stmt2->bind_param("s", $email);
+        $stmt2->execute();
+        $stmt2->store_result();
+
         if ($stmt->num_rows == 0) {
             //echo "Email does not exist.";
             echo'<script>alert("Email does not exist.")</script>';
         } else {
-            $stmt->bind_result($Id, $username, $email, $reset_token, $reset_expiry);
-            $stmt->fetch();
+            $stmt2->bind_result($username);
+            $stmt2->fetch();
             $emailContent = "Your username is " . $username; // Customize the email content as needed
             $emailSub = "Password Reset OTP";
 
