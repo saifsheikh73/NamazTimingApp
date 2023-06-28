@@ -63,25 +63,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt2->fetch();
 
             // Send a password reset email to the user
-            $resetLink = "namaz.questiondrive.com/resetpassword.php"; // Replace with your actual reset password page URL
+            $resetLink = "namaz.questiondrive.com/resetotp.php?token=" . $resetToken; // Replace with your actual reset password page URL
             /*$emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
             $emailSub = "Password Reset";*/
             $resetOTP = $resetToken; // Replace with your actual reset password page URL
             $emailContent = "Hello your user name is " . $username . "\n\n";
             $emailContent .= "and your OTP to reset password is " . $resetOTP . "\n\n"; // Customize the email content as needed
-            $emailContent .= "Click on link to enter OTP for password reset " . $resetLink; // Customize the email content as needed
+            $emailContent .= '<p>Click on the button below to enter the OTP for password reset:</p>';
+            $emailContent .= '<a href="' . $resetLink . '" style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 4px;">Reset Password</a>';            
             $emailSub = "Password Reset OTP";
 
+            // Redirect the user to a confirmation page
+            header("Location: resetotp.php");
 
             // Send the email using your preferred email sending method (e.g., PHPMailer, mail() function)
             // Replace the placeholders with your actual email sending code
             include'mail.php';
-            // Redirect the user to a confirmation page
-            header("Location: resetotp.php");  
+            
             exit();
         }
 
         $stmt->close();
+        $stmt2->close();
         $conn->close();
     }
 }
