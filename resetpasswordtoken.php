@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo'<script>alert("Email does not exist.")</script>';
         } else {
 
-            $stmt->bind_result($username);
+            $stmt->bind_result($id, $username, $email, $reset_token, $reset_expiry);
             $stmt->fetch();
             
             // Generate and store a password reset token
@@ -63,8 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $emailContent = "Click the following link to reset your password: " . $resetLink; // Customize the email content as needed
             $emailSub = "Password Reset";*/
             $resetLink = $resetToken; // Replace with your actual reset password page URL
-            $emailContent = "Your username is " . $username . ",\n\n";
-            $emailContent = "Your OTP to reset password is " . $resetLink; // Customize the email content as needed
+            $emailContent = "Hello " . $username . ",\n\n";
+            $emailContent .= "Your OTP to reset password is " . $resetLink; // Customize the email content as needed
             $emailSub = "Password Reset OTP";
 
 
