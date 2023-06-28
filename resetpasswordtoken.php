@@ -19,11 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Perform your database query to check if the email exists
         // Replace the placeholders with your actual database connection code
         $servername = "localhost"; 
-        $username = "questio2_id20710658_db"; 
+        $username1 = "questio2_id20710658_db"; 
         $password = "questio2_id20710658_db"; 
         $database = "questio2_namaz_db"; 
         // Create connection 
-        $conn = new mysqli($servername, $username, $password, $database); 
+        $conn = new mysqli($servername, $username1, $password, $database); 
         // Check connection 
         if ($conn->connect_error) { 
         die("Connection failed: " . $conn->connect_error); } 
@@ -56,9 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->bind_param("sss", $resetToken, $expiryTime, $email);
             $stmt->execute();
 
-            $query2 = "SELECT username FROM user1 WHERE email = ?";
+            $query2 = "SELECT username FROM user1 WHERE reset_token = ?, reset_expiry = ? AND email = ?";
             $stmt2 = $conn->prepare($query2);
-            $stmt2->bind_result($id, $username, $email, $reset_token, $reset_expiry);
+            $stmt2->bind_result($username);
             $stmt2->fetch();
 
 
