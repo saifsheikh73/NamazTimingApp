@@ -45,9 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //echo "Email does not exist.";
             echo'<script>alert("Email does not exist.")</script>';
         } else {
-
-            $stmt->bind_result($id, $username, $email, $reset_token, $reset_expiry);
-            $stmt->fetch();
             
             // Generate and store a password reset token
             $resetToken = generateResetToken(); // Replace this with your actual token generation code
@@ -61,8 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $query2 = "SELECT username FROM user1 WHERE email = ?";
             $stmt2 = $conn->prepare($query2);
-            $stmt->bind_result($id, $username, $email, $reset_token, $reset_expiry);
-            $stmt->fetch();
+            $stmt2->bind_result($id, $username, $email, $reset_token, $reset_expiry);
+            $stmt2->fetch();
 
 
             // Send a password reset email to the user
