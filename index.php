@@ -29,7 +29,7 @@ include 'allcssjs.php';
 					
 				
 					<div class="wrap-container-login100-form-btn">
-					<button type="button" class="login100-form-title-1" onclick="window.location.href='view_users.php'">Jamaat Timing</button>
+					<button type="button" class="login100-form-title-1" onclick="window.location.href='view_users.php'">Jama'at Timing</button>
 						
 					</div>
 				</form>

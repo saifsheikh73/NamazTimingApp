@@ -29,6 +29,8 @@ $asrtime = $row['asr'];
 $maghribtime = $row['maghrib'];
 $ishatime = $row['isha'];
 $jumatime = $row['juma'];
+$elaan=$row['elaan'];
+
 if($_SERVER['REQUEST_METHOD']=='POST'){
     
     
@@ -50,8 +52,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     
     $jumatime=$_POST['juma'];
     $formatted_jumatime = date("h:i A", strtotime($jumatime));
+
+    $elaan=$_POST['elaan'];
     
-    $sql="UPDATE user1 SET fajr ='". $formatted_fajrtime."', zohar ='". $formatted_zohartime."', asr ='". $formatted_asrtime."', maghrib ='". $formatted_maghribtime."', isha ='". $formatted_ishatime."', juma ='". $formatted_jumatime."' WHERE id ='".$_SESSION['id']."'";
+    $sql="UPDATE user1 SET fajr ='". $formatted_fajrtime."', zohar ='". $formatted_zohartime."', asr ='". $formatted_asrtime."', maghrib ='". $formatted_maghribtime."', isha ='". $formatted_ishatime."', juma ='". $formatted_jumatime."', elaan ='". $elaan."' WHERE id ='".$_SESSION['id']."'";
     
     
     $result=mysqli_query($conn,$sql) or die (mysqli_error($conn));
@@ -73,7 +77,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     <title>Edit Namaz Time</title>    
 </head>
 
-<body onmousedown="return false" onselectstart="return false">
+<body>
 
     <div class="limiter">
         <div class="container-login100">
@@ -126,6 +130,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                         <input type="text" class="form-control" id="TimePickerInput" name="juma" placeholder="Juma" value="<?php echo $jumatime; ?>">
                         </div>
                     </div>
+
+                    <div class="wrap-input100 validate-input m-b-26">
+						<span class="label-input100">Elaan</span>
+						<input class="input100" type="text" name="elaan" placeholder="Enter details" value="<?php echo $elaan; ?>">
+						<span class="focus-input100"></span>
+					</div>
 
                     <div class="container-login100-form-btn">
                         <input type="submit" class="login100-form-btn" value="Update">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
