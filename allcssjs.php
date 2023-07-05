@@ -13,10 +13,10 @@
 	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-	<link rel="stylesheet" type="text/css" href="csss/util.css">
-	<link rel="stylesheet" type="text/css" href="csss/main.css">
-	<link rel="stylesheet" type="text/css" href="csss/custommain.css">
-	<link rel="stylesheet" type="text/css" href="csss/styles.css">
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/custommain.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 	<script src="vendor/animsition/js/animsition.min.js"></script>
 	<script src="vendor/bootstrap/js/popper.js"></script>
