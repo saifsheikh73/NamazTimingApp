@@ -1,5 +1,2 @@
 #add the files to be ignored below
-conn.php
-connserver.php
-connlocal.php
-viewdbdata.php
+
