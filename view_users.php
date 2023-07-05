@@ -203,6 +203,7 @@ function hideInstructions() {
             <th class="text-center">Isha</th>
             <th class="text-center">Juma</th>
             <th class="text-center">Last updated on</th>
+            <th class="text-center">Aelaan</th>
         </tr>
         </thead>
 
@@ -225,12 +226,17 @@ while ($row = mysqli_fetch_array($run)) {
     $isha_time = $row['isha'];
     $juma_time = $row['juma'];
     $timestamp = $row['timestamp'];
+    $aelaan = $row['aelaan'];
     $date = date('d/m/Y', strtotime($timestamp));
 
     echo "<tr data-city='$city'>";
     echo "<td>$masjid_name</td>";
     echo "<td>$address, $city, $zipcode, $state</td>";
-    echo "<td><a href='$addresslink'>Get directions</a></td>";
+    if (!empty($addresslink) && filter_var($addresslink, FILTER_VALIDATE_URL)) {
+        echo "<td><a href='$addresslink'>Get directions</a></td>";
+    } else {
+        echo "<td></td>";
+    }
     echo "<td>$forladies</td>";
     echo "<td>$fajr_time</td>";
     echo "<td>$zohar_time</td>";
@@ -239,6 +245,7 @@ while ($row = mysqli_fetch_array($run)) {
     echo "<td>$isha_time</td>";
     echo "<td>$juma_time</td>";
     echo "<td>$date</td>";
+    echo "<td>$aelaan</td>";
     echo "</tr>";
 }
 ?>

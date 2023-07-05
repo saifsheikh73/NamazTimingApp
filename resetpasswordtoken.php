@@ -122,11 +122,11 @@ function generateResetToken() {
 <body>
 	
 	<div class="limiter">
-		<div class="container-login100">
+		<div class="container-login1001">
 			<div class="wrap-login100">
 				<div class="login100-form-title" style="background-image: url(images/bg-04.jpg);">
 					<span class="login100-form-title-1">
-						Reset Your Password
+						Get Username and Reset Password OTP
 					</span>
 				</div>
 

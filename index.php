@@ -14,7 +14,7 @@ include 'allcssjs.php';
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<div class="login100-form-title" style="background-image: url(images/bg-04.jpg);">
+				<div class="login100-form-title" style="background-image: url(images/bgfull.jpg);">
 					<span class="login100-form-title-1">
 					</span>&nbsp;
 				
@@ -32,7 +32,6 @@ include 'allcssjs.php';
 					<button type="button" class="login100-form-title-1" onclick="window.location.href='view_users.php'">Jama'at Timing</button>
 						
 					</div>
-				</form>
 			</div>
 		</div>
 	</div>

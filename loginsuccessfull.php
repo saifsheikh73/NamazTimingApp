@@ -29,7 +29,7 @@ $asrtime = $row['asr'];
 $maghribtime = $row['maghrib'];
 $ishatime = $row['isha'];
 $jumatime = $row['juma'];
-$elaan=$row['elaan'];
+$aelaan=$row['aelaan'];
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
     
@@ -53,9 +53,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $jumatime=$_POST['juma'];
     $formatted_jumatime = date("h:i A", strtotime($jumatime));
 
-    $elaan=$_POST['elaan'];
+    $aelaan=$_POST['aelaan'];
     
-    $sql="UPDATE user1 SET fajr ='". $formatted_fajrtime."', zohar ='". $formatted_zohartime."', asr ='". $formatted_asrtime."', maghrib ='". $formatted_maghribtime."', isha ='". $formatted_ishatime."', juma ='". $formatted_jumatime."', elaan ='". $elaan."' WHERE id ='".$_SESSION['id']."'";
+    $sql="UPDATE user1 SET fajr ='". $formatted_fajrtime."', zohar ='". $formatted_zohartime."', asr ='". $formatted_asrtime."', maghrib ='". $formatted_maghribtime."', isha ='". $formatted_ishatime."', juma ='". $formatted_jumatime."', aelaan ='". $aelaan."' WHERE id ='".$_SESSION['id']."'";
     
     
     $result=mysqli_query($conn,$sql) or die (mysqli_error($conn));
@@ -132,13 +132,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-26">
-						<span class="label-input100">Elaan</span>
-						<input class="input100" type="text" name="elaan" placeholder="Enter details" value="<?php echo $elaan; ?>">
+						<span class="label-input100">Aelaan</span>
+						<input class="input100" type="text" name="aelaan" placeholder="Enter details" value="<?php echo $aelaan; ?>">
 						<span class="focus-input100"></span>
 					</div>
 
                     <div class="container-login100-form-btn">
-                        <input type="submit" class="login100-form-btn" value="Update">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="submit" class="login100-form-btn" value="Update">
                     </div>
                     &nbsp;
 
