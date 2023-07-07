@@ -173,7 +173,15 @@ while ($row = mysqli_fetch_array($run)) {
     $juma_time = $row['juma'];
     $timestamp = $row['timestamp'];
     $aelaan = $row['aelaan'];
-    $date = date('d/m/Y', strtotime($timestamp));
+    //$date = date('d/m/Y', strtotime($timestamp));
+    $dateString = $timestamp;
+    $formattedDate= "";
+    if ($dateString !== null) {
+        $date = DateTime::createFromFormat('Y-m-d', $dateString);
+        $formattedDate = $date->format('d-m-Y');
+    }
+    
+
 
     echo "<tr data-city='$city'>";
     echo "<td>$masjid_name</td>";
@@ -190,7 +198,7 @@ while ($row = mysqli_fetch_array($run)) {
     echo "<td>$maghrib_time</td>";
     echo "<td>$isha_time</td>";
     echo "<td>$juma_time</td>";
-    echo "<td>$date</td>";
+    echo "<td>$formattedDate</td>";
     echo "<td>$aelaan</td>";
     echo "</tr>";
 }

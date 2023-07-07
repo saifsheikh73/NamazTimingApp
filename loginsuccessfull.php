@@ -13,6 +13,7 @@ include 'allcssjs.php';
     exit();
 }*/
 
+date_default_timezone_set('Asia/Kolkata');
 
 
 // Fetch user data from the database
@@ -28,6 +29,8 @@ $maghribtime = $row['maghrib'];
 $ishatime = $row['isha'];
 $jumatime = $row['juma'];
 $aelaan=$row['aelaan'];
+
+$date = date("Y-m-d");
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
     
@@ -52,8 +55,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $formatted_jumatime = date("h:i A", strtotime($jumatime));
 
     $aelaan=$_POST['aelaan'];
+
+  
     
-    $sql="UPDATE user1 SET fajr ='". $formatted_fajrtime."', zohar ='". $formatted_zohartime."', asr ='". $formatted_asrtime."', maghrib ='". $formatted_maghribtime."', isha ='". $formatted_ishatime."', juma ='". $formatted_jumatime."', aelaan ='". $aelaan."' WHERE id ='".$_SESSION['id']."'";
+    $sql="UPDATE user1 SET fajr ='". $formatted_fajrtime."', zohar ='". $formatted_zohartime."', asr ='". $formatted_asrtime."', maghrib ='". $formatted_maghribtime."', isha ='". $formatted_ishatime."', juma ='". $formatted_jumatime."', aelaan ='". $aelaan."', timestamp ='". $date."' WHERE id ='".$_SESSION['id']."'";
     
     
     $result=mysqli_query($conn,$sql) or die (mysqli_error($conn));
@@ -142,7 +147,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     </div>
                     <script>
                       function showPopup() {
-                            alert("Time updated");
+                            alert("Updated");
                               }
                     </script>
 
