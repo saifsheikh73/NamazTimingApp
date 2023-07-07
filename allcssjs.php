@@ -15,7 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="csss/util.css">
 	<link rel="stylesheet" type="text/css" href="csss/main.css">
-	<link rel="stylesheet" type="text/css" href="csss/custommain.css">
+	<link rel="stylesheet" type="text/css" href="csss/custmain.css">
 	<link rel="stylesheet" type="text/css" href="csss/styles.css">
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 	<script src="vendor/animsition/js/animsition.min.js"></script>

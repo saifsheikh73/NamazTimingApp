@@ -14,7 +14,6 @@ include 'allcssjs.php';
 }*/
 
 
-
 // Fetch user data from the database
 $sql = "SELECT * FROM user1 WHERE id = '".$_SESSION['id']."'";
 $result = mysqli_query($conn, $sql);
@@ -90,46 +89,44 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     <div class="wrap-input1001 validate-input m-b-26" data-validate="Time is required">
                         <span class="label-input100">Fajr</span>
                         <div class="input-group clockpicker" data-target="#TimePickerInput">
-                        <input type="text" class="timepicker form-control1" id="picker1" data-theme="dark" name="fajr" placeholder="Fajr" value="<?php echo $fajrtime; ?>">
+                        <input type="text" class="form-control" id="TimePickerInput" name="fajr" placeholder="Fajr" value="<?php echo $fajrtime; ?>">
                         </div>
                     </div>
 
                     <div class="wrap-input1001 validate-input m-b-26" data-validate="Time is required">
                         <span class="label-input100">Zohar</span>
                         <div class="input-group clockpicker" data-target="#TimePickerInput">
-                        <input type="text" class="timepicker form-control1" id="picker1" data-theme="dark" name="zohar" placeholder="Zohar" value="<?php echo $zohartime; ?>">
+                        <input type="text" class="form-control" id="TimePickerInput" name="zohar" placeholder="Zohar" value="<?php echo $zohartime; ?>">
                         </div>
                     </div>
 
                     <div class="wrap-input1001 validate-input m-b-26" data-validate="Time is required">
                         <span class="label-input100">Asr</span>
                         <div class="input-group clockpicker" data-target="#TimePickerInput">
-                        <input type="text" class="timepicker form-control1" id="picker1" data-theme="dark" name="asr" placeholder="Asr" value="<?php echo $asrtime; ?>">
+                        <input type="text" class="form-control" id="TimePickerInput" name="asr" placeholder="Asr" value="<?php echo $asrtime; ?>">
                         </div>
                     </div>
 
                     <div class="wrap-input1001 validate-input m-b-26" data-validate="Time is required">
                         <span class="label-input100">Maghrib</span>
                         <div class="input-group clockpicker" data-target="#TimePickerInput">
-                        <input type="text" class="timepicker form-control1" id="picker1" data-theme="dark" name="maghrib" placeholder="Maghrib" value="<?php echo $maghribtime; ?>">
+                        <input type="text" class="form-control" id="TimePickerInput" name="maghrib" placeholder="Maghrib" value="<?php echo $maghribtime; ?>">
                         </div>
                     </div>
 
                     <div class="wrap-input1001 validate-input m-b-26" data-validate="Time is required">
                         <span class="label-input100">Isha</span>
                         <div class="input-group clockpicker" data-target="#TimePickerInput">
-                        <input type="text" class="timepicker form-control1" id="picker1" data-theme="dark" name="isha" placeholder="Isha" value="<?php echo $ishatime; ?>">
+                        <input type="text" class="form-control" id="TimePickerInput" name="isha" placeholder="Isha" value="<?php echo $ishatime; ?>">
                         </div>
                     </div>
 
                     <div class="wrap-input1001 validate-input m-b-26" data-validate="Time is required">
                         <span class="label-input100">Juma</span>
                         <div class="input-group clockpicker" data-target="#TimePickerInput">
-                        <input type="text" class="timepicker form-control1" id="picker1" data-theme="dark" name="juma" placeholder="Juma" value="<?php echo $jumatime; ?>">
+                        <input type="text" class="form-control" id="TimePickerInput" name="juma" placeholder="Juma" value="<?php echo $jumatime; ?>">
                         </div>
                     </div>
-                    <!--Do not delete below line. It is for ok button of clock <div id="loggerTxt"></div> -->
-                    <div id="loggerTxt"></div>
 
                     <div class="wrap-input100 validate-input m-b-26">
 						<span class="label-input100">Aelaan</span>
@@ -138,14 +135,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 					</div>
 
                     <div class="container-login100-form-btn">
-                        <input type="submit" class="login100-form-btn" value="Update" onclick="showPopup()">
+                        <input type="submit" class="login100-form-btn" value="Update">
                     </div>
-                    <script>
-                      function showPopup() {
-                            alert("Time updated");
-                              }
-                    </script>
-
                     &nbsp;
 
                     <div class="container-login100-form-btn">
@@ -156,7 +147,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                         <input type="button" class="login100-form-btn" name="logout" onclick="window.location.href='logout.php'" value="Logout">
                     </div>
                     &nbsp;
-
                 </form>
             </div>
         </div>
@@ -164,62 +154,23 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
    
 <!--Include Bootstrap and FontAwesome CDNs -->
-<link rel="stylesheet" type="text/css" href="clock2/mdtimepicker.css">
-	<link rel="stylesheet" type="text/css" href="clock2/mdtimepicker-theme.css">
-	<style type="text/css">
-		html,
-		body {
-			min-height: 100%;
-			background-color: #f5f5f5;
-		}
-		body {
-			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-		}
-		.stats { margin-bottom: 12px; }
-		.stats a { text-decoration: none; }
-		.stats a + a { margin-left: 8px; }
-		#logger { margin-top: 24px; }
-		#logger span { display: block; }
-		#logger textarea {
-			width: 400px;
-			max-width: 100%;
-			margin-top: 4px;
-			resize: none;
-		}
-	</style>
+<link rel="stylesheet" href="clockscripts/1.css" />
+<link rel="stylesheet" href="clockscripts/2.css" />
+<link rel="stylesheet" href="clockscripts/3.css" />
+<script src="clockscripts1/.js"></script>
+<script src="clockscripts/2.js"></script>
+<script src="clockscripts/3.js"></script>
 
+<script>
+  $(document).ready(function() {
+    $('.clockpicker').clockpicker({
+      autoclose: true,
+      twelvehour: true,
+      donetext: 'Done'
+    }); 
+  });
+</script>
 
-<script type="text/javascript" src="clock2/mdtimepicker.js"></script>
-	<script type="text/javascript">
-	mdtimepicker.defaults({ theme: 'green', hourPadding: true, clearBtn: true });
-	function log (message) {
-		document.querySelector('#loggerTxt').value = message
-	}
-
-	window.onload = function () {
-		mdtimepicker('#picker1', {
-			events: {
-				timeChanged: function (data) {
-					console.log('timeChanged', data)
-					log('timeChanged: ' + data.value)
-				}
-			}
-		})
-		// mdtimepicker('#picker1', 'setValue', '12:00 PM')
-
-		mdtimepicker('#picker2', { readOnly: false, is24hour: true, //format: 'h:mm tt',
-			events: {
-				ready: function() { console.log('ready', this) },
-				shown: function() { console.log('shown', this) },
-				hidden: function() { console.log('hidden', this) },
-				timeChanged: function (data) {
-					console.log('timeChanged', data)
-					log('timeChanged: ' + data.value)
-				}
-			}
-		})
-	}
-	</script>
 
 </body>
 

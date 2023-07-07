@@ -17,8 +17,39 @@ include 'allcssjs.php';
 </div>-->
 
 
+<!-- Button to trigger the popup -->
+<a href="#" class="button" onclick="showInstructions();">Find Masjids Near Me</a>
 
-<a href="https://www.google.com/maps/search/masjid+near+me" class="button">Masjid near me</a>
+<!-- Popup modal -->
+<div id="instructionModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="hideInstructions();">&times;</span>
+    <p>To find Masjids near you, please enable GPS on your mobile device, wait for 5 seconds and then click the button below:</p>
+    <div class="button-container">
+      <a href="https://www.google.com/maps/search/masjids+near+me" class="custom-button" target="_blank">Continue</a>
+    </div>
+  </div>
+</div>
+
+<!-- CSS styles for the modal -->
+
+
+
+
+<!-- JavaScript functions to show/hide the modal -->
+<script>
+function showInstructions() {
+  var modal = document.getElementById("instructionModal");
+  modal.style.display = "block";
+}
+
+function hideInstructions() {
+  var modal = document.getElementById("instructionModal");
+  modal.style.display = "none";
+}
+</script>
+
+
 <a href="login.php" class="button2">Masjid login</a>
 
 <br>
@@ -30,25 +61,63 @@ include 'allcssjs.php';
 
 <div class="container-fluid">
 <div class="alert alert-success">
-    <h1 align="center">Jamaat timing list by Masjid</h1>
+    <h1 align="center">Jama'at timing list by Masjid</h1>
     </div>
     <div class="filter-section">
-        <label for="city-filter">Filter by City:</label>
-        <select id="city-filter">
-            <option value="">All Cities</option>
-            <?php
-            // Fetch city names from the database table
-            $query = "SELECT DISTINCT city FROM user1";
-            $result = mysqli_query($conn, $query);
-            if ($result) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $city = $row['city'];
-                    echo "<option value='$city'>$city</option>";
-                }
+    <label for="city-filter">Filter by City:</label>
+    <select id="city-filter">
+        <option value="">All Cities</option>
+        <?php
+        // Fetch city names from the database table
+        $query = "SELECT DISTINCT city FROM user1";
+        $result = mysqli_query($conn, $query);
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $city = $row['city'];
+                echo "<option value='$city'>$city</option>";
             }
-            ?>
-        </select>
-    </div>
+        }
+        ?>
+    </select>
+    <input type="text" id="city-search" placeholder="Search by City">
+</div>
+
+<script>
+    // Function to handle the city filter
+    function filterByCity() {
+        var filterValue = document.getElementById("city-filter").value.toLowerCase();
+        var tableRows = document.querySelectorAll("#getsearch tr[data-city]");
+
+        tableRows.forEach(function(row) {
+            var city = row.getAttribute("data-city").toLowerCase();
+            if (filterValue === "" || city === filterValue) {
+                row.style.display = "table-row";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    }
+
+    // Event listener for city filter select
+    document.getElementById("city-filter").addEventListener("change", filterByCity);
+
+    // Event listener for city search input
+    document.getElementById("city-search").addEventListener("input", function() {
+        var searchValue = this.value.toLowerCase();
+        var tableRows = document.querySelectorAll("#getsearch tr[data-city]");
+
+        tableRows.forEach(function(row) {
+            var city = row.getAttribute("data-city").toLowerCase();
+            var matchIndex = city.indexOf(searchValue);
+            if (matchIndex !== -1) {
+                row.style.display = "table-row";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    });
+</script>
+
     <div>
 <form class="navbar-form navbar-center">
         <div class="form-group">
@@ -80,6 +149,7 @@ include 'allcssjs.php';
             <th class="text-center">Isha</th>
             <th class="text-center">Juma</th>
             <th class="text-center">Last updated on</th>
+            <th class="text-center">Aelaan</th>
         </tr>
         </thead>
 
@@ -102,12 +172,17 @@ while ($row = mysqli_fetch_array($run)) {
     $isha_time = $row['isha'];
     $juma_time = $row['juma'];
     $timestamp = $row['timestamp'];
+    $aelaan = $row['aelaan'];
     $date = date('d/m/Y', strtotime($timestamp));
 
     echo "<tr data-city='$city'>";
     echo "<td>$masjid_name</td>";
     echo "<td>$address, $city, $zipcode, $state</td>";
-    echo "<td><a href='$addresslink'>Get directions</a></td>";
+    if (!empty($addresslink) && filter_var($addresslink, FILTER_VALIDATE_URL)) {
+        echo "<td><a href='$addresslink'>Get directions</a></td>";
+    } else {
+        echo "<td></td>";
+    }
     echo "<td>$forladies</td>";
     echo "<td>$fajr_time</td>";
     echo "<td>$zohar_time</td>";
@@ -116,6 +191,7 @@ while ($row = mysqli_fetch_array($run)) {
     echo "<td>$isha_time</td>";
     echo "<td>$juma_time</td>";
     echo "<td>$date</td>";
+    echo "<td>$aelaan</td>";
     echo "</tr>";
 }
 ?>

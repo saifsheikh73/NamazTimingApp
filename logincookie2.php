@@ -1,76 +1,60 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-//////////////////////////////
 include 'conn.php';
 include 'allcssjs.php';
 
-/* Code not needed
-if($_SERVER['REQUEST_METHOD']=='POST'){
-	$sql1="SELECT * from user1 WHERE username='".$_POST['username']."' AND password ='".$_POST['member_password']."'" ;
-	$result1=mysqli_query($conn,$sql1) or die (mydqli_error($conn));
-	if(mysqli_num_rows($result1) > 0){
-	$fetchData=mysqli_fetch_assoc($result1);
-	$_SESSION['id']=$fetchData['id'];
-	$_SESSION['username']=$fetchData['username'];
-	}*/
-//session_start();
-if(isset($_SESSION["username"]))
-{
- header("location:loginsuccessfull.php");
+//This is updated with password_verify
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $sql1 = "SELECT * FROM user1 WHERE username='" . $_POST['username'] . "'";
+    $result1 = mysqli_query($conn, $sql1) or die(mysqli_error($conn));
+    if (mysqli_num_rows($result1) > 0) {
+        $fetchData = mysqli_fetch_assoc($result1);
+        if (password_verify($_POST['member_password'], $fetchData['password'])) {
+            $_SESSION['id'] = $fetchData['id'];
+            $_SESSION['username'] = $fetchData['username'];
+            header("location:loginsuccessfull.php");
+        } else {
+            $message = "Invalid Login";
+        }
+    }
 }
-//$conn = mysqli_connect("localhost", "root", "", "id20710658_db");  
-if(isset($_POST["login"]))   
-{  
-	$sql1="SELECT * from user1 WHERE username='".$_POST['username']."' AND password ='".$_POST['member_password']."'" ;
-	$result1=mysqli_query($conn,$sql1) or die (mydqli_error($conn));
-	if(mysqli_num_rows($result1) > 0){
-		$fetchData=mysqli_fetch_assoc($result1);
-		$_SESSION['id']=$fetchData['id'];
-		$_SESSION['username']=$fetchData['username'];
-		}
- if(!empty($_POST["username"]) && !empty($_POST["member_password"]))
- {
-  $name = mysqli_real_escape_string($conn, $_POST["username"]);
-  //$password = md5(mysqli_real_escape_string($conn, $_POST["member_password"]));
-  $sql = "Select * from user1 where username ='".$_POST['username']."' AND password ='".$_POST['member_password']."'" ;
-  $result = mysqli_query($conn,$sql);  
-  $user = mysqli_fetch_array($result);  
-  if($user)   
-  {  
-   if(!empty($_POST["remember"]))   
-   {  
-    setcookie ("member_login",$name,time()+ (10 * 365 * 24 * 60 * 60));  
-    //setcookie ("member_password",$password,time()+ (10 * 365 * 24 * 60 * 60));
-    $_SESSION["username"] = $name;
-   }  
-   else  
-   {  
-    if(isset($_COOKIE["member_login"]))   
-    {  
-     setcookie ("member_login","");  
-    }  
-    if(isset($_COOKIE["member_password"]))   
-    {  
-     setcookie ("member_password","");  
-    }  
-   }  
-   header("location:loginsuccessfull.php"); 
-  }  
-  else  
-  {  
-   //$message = "Invalid Login";  
-   echo "<script>alert('Invalid username or password.');</script>";
-  } 
- }
- else
- {
-  $message = "Both are Required Fields";
- }
-}  
 
+if (isset($_SESSION["username"])) {
+    header("location:loginsuccessfull.php");
+}
 
- ?>  
+if (isset($_POST["login"])) {
+    if (!empty($_POST["username"]) && !empty($_POST["member_password"])) {
+        $name = mysqli_real_escape_string($conn, $_POST["username"]);
+        $password = mysqli_real_escape_string($conn, $_POST["member_password"]);
+        $sql = "SELECT * FROM user1 WHERE username='" . $_POST['username'] . "'";
+        $result = mysqli_query($conn, $sql);
+        $user = mysqli_fetch_array($result);
+        if ($user) {
+            if (!empty($_POST["remember"])) {
+                setcookie("member_login", $name, time() + (10 * 365 * 24 * 60 * 60));
+                setcookie("member_password", $password, time() + (10 * 365 * 24 * 60 * 60));
+                $_SESSION["username"] = $name;
+            } else {
+                if (isset($_COOKIE["member_login"])) {
+                    setcookie("member_login", "");
+                }
+                if (isset($_COOKIE["member_password"])) {
+                    setcookie("member_password", "");
+                }
+            }
+            header("location:loginsuccessfull.php");
+        } else {
+            $message = "Invalid Login";
+        }
+    } else {
+        $message = "Both are Required Fields";
+    }
+}
+?>
+
 
 
 <!DOCTYPE html>

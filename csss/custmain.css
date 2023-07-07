@@ -1,0 +1,358 @@
+.container-login1001 {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  background: #ebeeef;
+}
+
+
+
+
+/*Loginsuccessfull1*/
+.wrap-input1001 {
+  width: 100%;
+  position: relative;
+  /*border-bottom: 1px solid #FFFFFF;*/
+}
+
+/*resetotp*/
+.login100-form1 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 43px 88px 88px 54px;
+}
+
+.login100-form-title-2 {
+  font-family: Poppins-Bold;
+  font-size: 30px;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.container-login100-form-btn1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.login100-form-btn {
+    padding: 0 20px;
+    min-width: 160px;
+    height: 50px;
+    background-color: #57b846;
+    border-radius: 25px;
+    font-family: Poppins-Regular;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.2;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.custom-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #57b846;
+}
+
+.custom-btn:hover {
+    background-color: #333333;
+}
+
+.otp-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+}
+
+.otp-input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  margin: 5px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*resetconfirmation*/
+.login100-form1 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 43px 88px 88px 54px;
+}
+
+.login100-form-title-2 {
+  font-family: Poppins-Bold;
+  font-size: 30px;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.container-login100-form-btn1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.login100-form-btn {
+    padding: 0 20px;
+    min-width: 160px;
+    height: 50px;
+    background-color: #57b846;
+    border-radius: 25px;
+    font-family: Poppins-Regular;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.2;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.custom-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #57b846;
+}
+
+.custom-btn:hover {
+    background-color: #333333;
+}
+
+
+.button {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  padding: 10px;
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.button2 {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  padding: 10px;
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+
+/*==================================================================
+[ Custom Title form ]*/
+.login100-form-titlecust {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  padding: 70px 15px 74px 15px;
+}
+
+.login100-form-title-1cust {
+  font-family: Poppins-Bold;
+  font-size: 30px;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.login100-form-titlecust::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(54,84,99,0.7);
+}
+
+.container-login100cust {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: #ebeeef;
+  height: 100vh;
+}
+
+/*Masjids near me popup*/
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 80%;
+  position: relative;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.custom-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #143150;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Adjustments for mobile view */
+@media only screen and (max-width: 600px) {
+  .modal-content {
+    margin: 25% auto;
+    padding: 10px;
+    max-width: 90%;
+  }
+}
+
+/*Labe input field*/
+
+.form-control1 {
+  display: block;
+  width: 27%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: #495057;
+  background-color: #fff;
+  background-image: none;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.form-control1::-ms-expand {
+  background-color: transparent;
+  border: 0;
+}
+
+.form-control1:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: none;
+}
+
+.form-control1::-webkit-input-placeholder {
+  color: #868e96;
+  opacity: 1;
+}
+
+.form-control1:-ms-input-placeholder {
+  color: #868e96;
+  opacity: 1;
+}
+
+.form-control1::placeholder {
+  color: #868e96;
+  opacity: 1;
+}
+
+.form-control1:disabled, .form-control1[readonly] {
+  background-color: #e9ecef;
+  opacity: 1;
+}
+
+select.form-control1:not([size]):not([multiple]) {
+  height: calc(2.25rem + 2px);
+}
+
+select.form-control1:focus::-ms-value {
+  color: #495057;
+  background-color: #fff;
+}
+
+.form-control1-file,
+.form-control1-range {
+  display: block;
+}
