@@ -15,25 +15,25 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	$_SESSION['username']=$fetchData['username'];
 	}*/
 //session_start();
-if(isset($_SESSION["firstname"]))
+if(isset($_SESSION["email"]))
 {
  header("location:zusereditdetails.php");
 }
 //$conn = mysqli_connect("localhost", "root", "", "id20710658_db");  
 if(isset($_POST["login"]))   
 {  
-	$sql1="SELECT * from user2 WHERE email='".$_POST['username']."' AND password ='".$_POST['member_password']."'" ;
+	$sql1="SELECT * from user2 WHERE email='".$_POST['email']."' AND password ='".$_POST['member_password']."'" ;
 	$result1=mysqli_query($conn,$sql1) or die (mydqli_error($conn));
 	if(mysqli_num_rows($result1) > 0){
 		$fetchData=mysqli_fetch_assoc($result1);
 		$_SESSION['id']=$fetchData['id'];
-		$_SESSION['firstname']=$fetchData['firstname'];
+		$_SESSION['username']=$fetchData['username'];
 		}
- if(!empty($_POST["username"]) && !empty($_POST["member_password"]))
+ if(!empty($_POST["email"]) && !empty($_POST["member_password"]))
  {
-  $name = mysqli_real_escape_string($conn, $_POST["username"]);
+  $name = mysqli_real_escape_string($conn, $_POST["email"]);
   //$password = md5(mysqli_real_escape_string($conn, $_POST["member_password"]));
-  $sql = "Select * from user2 where email ='".$_POST['username']."' AND password ='".$_POST['member_password']."'" ;
+  $sql = "Select * from user2 where email ='".$_POST['email']."' AND password ='".$_POST['member_password']."'" ;
   $result = mysqli_query($conn,$sql);  
   $user = mysqli_fetch_array($result);  
   if($user)   
@@ -90,9 +90,9 @@ if(isset($_POST["login"]))
 				</div>
 
 				<form class="login100-form validate-form" method="POST" id="frmLogin">
-					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
 						<span class="label-input100">Username</span>
-						<input class="input100" type="text" name="username" placeholder="Enter email" value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" required>
+						<input class="input100" type="text" name="email" placeholder="Enter email" value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" required>
 						<span class="focus-input100"></span>
 					</div>
 
@@ -122,7 +122,7 @@ if(isset($_POST["login"]))
 						</div>
 						&nbsp;&nbsp;
 						<div class="container-login100-form-btn">
-						<button type="button" class="login100-form-btn" onclick="window.location.href='signup.php'">Sign up ?</button>
+						<button type="button" class="login100-form-btn" onclick="window.location.href='zusersignup.php'">Sign up ?</button>
 					</div>
 					</div>
 				</form>

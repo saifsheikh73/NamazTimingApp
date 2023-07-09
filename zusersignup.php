@@ -5,118 +5,83 @@ ini_set('display_errors', 1);
 include 'conn.php';
 include 'allcssjs.php';
 
-// Fetch user data from the database
-$sql = "SELECT * FROM user2 WHERE id = '".$_SESSION['id']."'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-
-$userName=$row['username'];
-$email=$row['email'];
-$password=$row['password'];
-$mobileno=$row['mobileno'];
-$city = $row['city'];
-$zipcode = $row['zipcode'];
-
 if($_SERVER['REQUEST_METHOD']=='POST'){
-    
-	$userName=$_POST['username'];
-	$email=$_POST['email'];
-	$password=$_POST['password'];
-	$mobileno=$_POST['mobileno'];
-	$city = $_POST['city'];
-	$zipcode = $_POST['zipcode'];
-    
-
-	$sql="UPDATE user2 SET username ='". $userName."', email ='". $email."', password ='". $password."', mobileno ='". $mobileno."', city ='". $city."', zipcode ='". $zipcode."' WHERE id ='".$_SESSION['id']."'";
-    
-    
+    $userName=$_POST['username'];
+    $email=$_POST['email'];
+   $password=$_POST['pass'];
+    $sql="INSERT INTO user2 (userName,email,mobileno,password,city,zipcode) VALUES
+    ('".$_POST['username']."',
+    '".$_POST['email']."',
+    '".$_POST['mobileno']."',
+    '".$_POST['pass']."',
+    '".$_POST['city']."',
+    '".$_POST['zipcode']."')";
     $result=mysqli_query($conn,$sql) or die (mysqli_error($conn));
-
-
+    echo"<script>window.location.href='zusersuccessfull.php';</script>";
+    //header('Location:successfull.php');
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Edit Masjid Details</title>
+	<title>Sign Up</title>
 </head>
 <body>
-<!--===============================================================================================-->
-<!--Languager translator code-->
-<div id="google_translate_element"></div>
- 
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement(
-                {pageLanguage: 'en'},
-                'google_translate_element'
-            );
-        }
-    </script>
- 
-    <script type="text/javascript"
-            src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-    </script>
-<!--===============================================================================================-->
-
-<div class="limiter">
+	
+	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-form-title" style="background-image: url(images/bg-04.jpg);">
 					<span class="login100-form-title-1">
-					Edit <?php echo $_SESSION['username']; ?> Details
+						Sign Up
 					</span>
 				</div>
-                                <form class="login100-form validate-form" method="POST">
-					
+                                <form class="login100-form validate-form" id="form" method="POST">
+
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Name is required">
 						<span class="label-input100">Name</span>
-						<input class="input100" type="text" name="username" placeholder="Enter your name" value="<?php echo $userName; ?>" required>
+						<input class="input100" type="text" name="username" placeholder="Enter your name" required>
 						<span class="focus-input100"></span>
 					</div>
 					
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
 						<span class="label-input100">Email id</span>
-						<input class="input100" type="text" name="email" placeholder="Enter you email id" id="req" onKeyUp="checkname();" value="<?php echo $email; ?>" required>
+						<input class="input100" type="text" name="email" placeholder="Enter you email id" id="req" onKeyUp="checkname();" required>
 						<span id="name_status"></span>
 					</div>
+
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Mobile no. is required">
 						<span class="label-input100">Mobile no.</span>
-						<input class="input100" type="number" name="mobileno" placeholder="Enter mobile no." value="<?php echo $mobileno; ?>" required>
+						<input class="input100" type="number" name="mobileno" placeholder="Enter primary mobile no." required>
 						<span class="focus-input100"></span>
-					</div>
+					</div>					
+					
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
 						<span class="label-input100">Password</span>
-						<input class="input100" type="text" name="password" placeholder="Enter password" value="<?php echo $password; ?>" required>
+						<input class="input100" type="password" name="pass" placeholder="Enter password" required>
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-26" data-validate="City is required">
 						<span class="label-input100">City</span>
-						<input class="input100" type="text" name="city" placeholder="City" value="<?php echo $city; ?>" required>
+						<input class="input100" type="text" name="city" placeholder="City" required>
 						<span class="focus-input100"></span>
 					</div>
+
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Zipcode is required">
 						<span class="label-input100">Zipcode</span>
-						<input class="input100" type="number" name="zipcode" placeholder="Zipcode" value="<?php echo $zipcode; ?>" required>
+						<input class="input100" type="number" name="zipcode" placeholder="Zipcode" required>
 						<span class="focus-input100"></span>
 					</div>
 					
-
-					
-
 					<div class="container-login100-form-btn">
-                        <input type="submit" class="login100-form-btn" value="Update">
-                    </div>
-                    &nbsp;
-					<div class="container-login100-form-btn">
-						<button type="button" class="login100-form-btn" onclick="window.location.href='zuserlogin.php'">Edit Namaz Time</button>
-					</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                    <div class="container-login100-form-btn">
-                        <input type="button" class="login100-form-btn" name="logout" onclick="window.location.href='zuserlogout.php'" value="Logout">
-                    </div>
+						<input type="submit" id="sub" class="login100-form-btn" value="Sign Up">
+						</div>
+						&nbsp;&nbsp;
+						<div class="container-login100-form-btn">
+						<button type="button" class="login100-form-btn" onclick="window.location.href='zuserlogin.php'">Already Signed up?</button>
+					</div>
 				</form>
 			</div>
 		</div>
