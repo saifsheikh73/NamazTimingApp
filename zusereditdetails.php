@@ -175,7 +175,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 					</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                     <div class="container-login100-form-btn">
-                        <input type="button" class="login100-form-btn" name="logout" onclick="window.location.href='zuserlogout.php'" value="Logout">
+                        <button type="button" class="login100-form-btn" onclick="window.location.href='zuserlogout.php'">Logout</button>
                     </div>
 				</form>
 			</div>
