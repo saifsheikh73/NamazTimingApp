@@ -31,7 +31,12 @@ include 'allcssjs.php';
 				<div class="wrap-container-login100-form-btn">
 					<button type="button" class="login100-form-title-1cust" onclick="window.location.href='login.php'">Masjid login</button>&nbsp;
 				</div>
-				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+				<br><br><br>
+
+				<div class="wrap-container-login100-form-btn">
+					<button type="button" class="login100-form-title-1cust" onclick="window.location.href='zuserlogin.php'">User login</button>&nbsp;
+				</div>
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 				<div class="wrap-container-login100-form-btn">
 					<button type="button" class="login100-form-title-1cust" a href="#" onclick="showInstructions();">Masjids near me</button>&nbsp;
 				</div>
