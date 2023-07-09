@@ -34,14 +34,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mailSMTPSecure = 'tls'; // Enable TLS encryption, [ICODE]ssl[/ICODE] also accepted
         $mailPort = 587; // TCP port to connect to
         
-        $query = "SELECT * FROM user1 WHERE email = ? or email2 = ?";
+        $query = "SELECT * FROM user2 WHERE email = ?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("ss", $email, $email);
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
 
-        $stmt2 = $conn->prepare("SELECT username FROM user1 WHERE email = ? or email2 = ?");
-        $stmt2->bind_param("ss", $email, $email);
+        $stmt2 = $conn->prepare("SELECT username FROM user2 WHERE email = ?");
+        $stmt2->bind_param("s", $email);
         $stmt2->execute();
         $stmt2->store_result();
 
@@ -54,10 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $expiryTime = date('Y-m-d H:i:s', strtotime('+1 hour')); // Set the expiry time for the token
 
             // Store the reset token and expiry time in the database
-            $query = "UPDATE user1 SET reset_token = ?, reset_expiry = ? WHERE email = ? or email2 = ?";
-            $stmt3 = $conn->prepare($query);
-            $stmt3->bind_param("ssss", $resetToken, $expiryTime, $email, $email);
-            $stmt3->execute();
+            $query = "UPDATE user2 SET reset_token = ?, reset_expiry = ? WHERE email = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("sss", $resetToken, $expiryTime, $email);
+            $stmt->execute();
 
             $stmt2->bind_result($username);
             $stmt2->fetch();
