@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 include 'conn.php';
 include 'allcssjs.php';
 
-// Check if the form is submitted
+// Check if the form is submitted or not
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Process the form data
     $email = $_POST['email'];
@@ -84,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $stmt->close();
         $stmt2->close();
+        $stmt3->close();
         $conn->close();
     }
 }
