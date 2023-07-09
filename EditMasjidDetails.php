@@ -178,34 +178,53 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		</div>
 	</div>
 
-	
-<script type="text/javascript">
-      function checkname()
-{
- var name=document.getElementById( "req" ).value;
- if(name)
- {
-  $.ajax({
-  type: 'POST',
-  url: 'checkdata.php',
-  data: {
-   user_name:name,
-  },
-  success: function (response) {
-   $( '#name_status' ).html(response);
-   if(response == '<h6 style="color:red;">User Name Already Exist</h6>'){
-   $("#sub").click(function(event){
-    event.preventDefault();
-});
- }
- if(response == ''){
-  $('#sub').unbind('click');
- }
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+  function checkname() {
+    var name = document.getElementById("req").value;
+    if (name) {
+      $.ajax({
+        type: 'POST',
+        url: 'checkusername.php',
+        data: {
+          username: name,
+        },
+        success: function(response) {
+          $('#name_status').html(response);
+          if (response === '<h6 style="color:red;">User Name Already Exists</h6>') {
+            // Disable the submit button
+            $("#sub").prop("disabled", true);
+          } else {
+            // Enable the submit button
+            $("#sub").prop("disabled", false);
+          }
+        }
+      });
+    }
   }
+
+  $(document).ready(function() {
+    // Call the checkname function when the page loads
+    checkname();
   });
- }
-}
- 
-    </script>
+
+  $("#form").submit(function(event) {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+
+    // Call the checkname function to perform username validation
+    checkname();
+
+    // Submit the form if the submit button is enabled
+    if (!$("#sub").prop("disabled")) {
+      $(this).unbind('submit').submit();
+    } else {
+      // Scroll to the username input field
+      $('html, body').animate({
+        scrollTop: $('#req').offset().top
+      }, 500);
+    }
+  });
+</script>
 </body>
 </html>
