@@ -76,9 +76,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 					</div>
 					
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
-						<span class="label-input100">Email id</span>
-						<input class="input100" type="text" name="email" placeholder="Enter you email id" id="req" onKeyUp="checkname();" value="<?php echo $email; ?>" required>
-						<span id="name_status"></span>
+    <span class="label-input100">Email id</span>
+    <input class="input100" type="text" name="email" placeholder="Enter your email id" id="req" value="<?php echo $email; ?>" required disabled>
 					</div>
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Mobile no. is required">
 						<span class="label-input100">Mobile no.</span>

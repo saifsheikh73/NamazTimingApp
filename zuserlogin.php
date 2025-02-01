@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 //session_start();
 if(isset($_SESSION["email"]))
 {
- header("location:zusereditdetails.php");
+ header("location:view_users6.php");
 }
 //$conn = mysqli_connect("localhost", "root", "", "id20710658_db");  
 if(isset($_POST["login"]))   
@@ -28,6 +28,8 @@ if(isset($_POST["login"]))
 		$fetchData=mysqli_fetch_assoc($result1);
 		$_SESSION['id']=$fetchData['id'];
 		$_SESSION['username']=$fetchData['username'];
+		$_SESSION['city']=$fetchData['city'];
+		$_SESSION['zipcode']=$fetchData['zipcode'];
 		}
  if(!empty($_POST["email"]) && !empty($_POST["member_password"]))
  {
@@ -55,7 +57,7 @@ if(isset($_POST["login"]))
      setcookie ("member_password","");  
     }  
    }  
-   header("location:zusereditdetails.php"); 
+   header("location:view_users6.php"); 
   }  
   else  
   {  
@@ -91,7 +93,7 @@ if(isset($_POST["login"]))
 
 				<form class="login100-form validate-form" method="POST" id="frmLogin">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
-						<span class="label-input100">Username</span>
+						<span class="label-input100">Email</span>
 						<input class="input100" type="text" name="email" placeholder="Enter email" value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" required>
 						<span class="focus-input100"></span>
 					</div>

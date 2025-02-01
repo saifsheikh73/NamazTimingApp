@@ -1,7 +1,7 @@
 <html lang="en" ng-app="StarterApp">
 	<head>
-	<link rel="stylesheet" type="text/css" href="table.css">
-	<script src="tab.js"></script>
+	<link rel="stylesheet" type="text/css" href="tablecss/table.css">
+	<script src="tablecss/tab.js"></script>
 	</head>
   <body layout="column" ng-controller="AppCtrl">
     <div class="main-fab">

@@ -1,0 +1,20 @@
+Search city and enter autmatically to search code
+<form class="navbar-form navbar-center">
+        <div class="form-group">
+         <span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;<input type="text" class="form-control" placeholder="Search by Masjid name/address" id="searchTerm" onKeyUp="doSearch()" value="<?php echo $_SESSION['city']; ?>">
+<script>
+    // Function to simulate pressing the Enter key
+    function simulateEnterKeyPress() {
+        var event = new KeyboardEvent('keyup', {
+            key: 'Enter',
+            bubbles: true,
+            cancelable: true,
+        });
+        document.getElementById('searchTerm').dispatchEvent(event);
+    }
+
+    // Wait for 1 second (1000 milliseconds) and then trigger the Enter key press
+    setTimeout(simulateEnterKeyPress, 1000);
+</script>
+
+        </div>
